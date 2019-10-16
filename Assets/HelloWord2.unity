@@ -1041,16 +1041,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -2826480838796009887, guid: ef66dd351b1fb3641ba4ba041cfed1db,
-        type: 3}
-      propertyPath: Prefab
-      value: 
-      objectReference: {fileID: 372720152}
     - target: {fileID: 1304875548797594157, guid: ef66dd351b1fb3641ba4ba041cfed1db,
         type: 3}
       propertyPath: m_Name
       value: SpawnStart
       objectReference: {fileID: 0}
+    - target: {fileID: -2826480838796009887, guid: ef66dd351b1fb3641ba4ba041cfed1db,
+        type: 3}
+      propertyPath: Prefab
+      value: 
+      objectReference: {fileID: 372720152}
     - target: {fileID: 2599684378355082405, guid: ef66dd351b1fb3641ba4ba041cfed1db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1255,6 +1255,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -13.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114441997961109578, guid: bb0018ce3a8caa643b44f8487c34bd25,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 3}
 --- !u!4 &782878105 stripped
@@ -1276,7 +1281,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782878107}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
@@ -1335,6 +1340,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 782878104}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &782878110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782878107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9feb2fa64deaa1348adf888d9504514d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraScrollSpeed: 0.01
+  startPosition: {x: 0, y: 0, z: 0}
+  waitToScroll: 2
 --- !u!1 &821231264
 GameObject:
   m_ObjectHideFlags: 0

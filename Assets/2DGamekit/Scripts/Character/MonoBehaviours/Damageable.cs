@@ -18,8 +18,8 @@ namespace Gamekit2D
         public class HealEvent : UnityEvent<int, Damageable>
         { }
 
-        public int startingHealth = 5;
-        public bool invulnerableAfterDamage = true;
+        public int startingHealth = 100;
+        public bool invulnerableAfterDamage = false;
         public float invulnerabilityDuration = 3f;
         public bool disableOnDeath = false;
         [Tooltip("An offset from the obejct position used to set from where the distance to the damager is computed")]

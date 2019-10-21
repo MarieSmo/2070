@@ -1290,6 +1290,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114441997961109578, guid: bb0018ce3a8caa643b44f8487c34bd25,
+        type: 3}
+      propertyPath: m_DefaultBlend.m_Time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114441997961109578, guid: bb0018ce3a8caa643b44f8487c34bd25,
+        type: 3}
+      propertyPath: m_DefaultBlend.m_Style
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 3}
 --- !u!4 &782878105 stripped

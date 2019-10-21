@@ -14,15 +14,20 @@ public class CharacterController2D : MonoBehaviour
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;            // Whether or not the player is grounded.
     private Rigidbody2D m_Rigidbody2D;
+
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
+    public float health;
 
+    public LayerMask whatIsEnnemy;
     private float timeBtwAttck;
     public float startTimeBtwAttck;
-    public Transform attackPos;
-    public float attackRange;
-    public LayerMask whatIsEnnemy;
-    public int damage;
+    public Transform punchPos;
+    public Transform kickPos;
+    public float punchRange;
+    public float kickRange;
+    public float punchDamage;
+    public float kickDamage;
 
 
     [Header("Events")]
@@ -39,7 +44,12 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
-    }
+
+        punchDamage = 12f;
+        kickDamage = 7f;
+        kickRange = 2 * punchRange;
+        health = 100f;
+}
 
     private void FixedUpdate()
     {
@@ -84,6 +94,12 @@ public class CharacterController2D : MonoBehaviour
                 Flip();
             }
         }
+
+        if (health <= 0)
+        {
+            Die();
+        }
+
         // If the player should jump...
         if (m_Grounded && jump)
         {
@@ -93,23 +109,38 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    public void Attack(bool attack) {
+    public void Attack(bool punch, bool kick) {
         if (timeBtwAttck <= 0)
         {
             timeBtwAttck = startTimeBtwAttck;
-            if (attack)
+            if (punch)
             {
-                Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnnemy);
+                Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(punchPos.position, punchRange, whatIsEnnemy);
                 for (int i = 0; i < damageableEnemies.Length; i++)
                 {
-                    //damageableEnemies[i].GetComponent<Enemy>().health -= damage;
-                    print("attack");
+                    damageableEnemies[i].GetComponent<EnemyBehavior2D>().Damage(punchDamage);
+                    print("punch");
+                }
+            }
+            else if (kick)
+            {
+                Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(kickPos.position, kickRange, whatIsEnnemy);
+                for (int i = 0; i < damageableEnemies.Length; i++)
+                {
+                    damageableEnemies[i].GetComponent<EnemyBehavior2D>().Damage(kickDamage);
+                    print("kick");
                 }
             }
         } else
         {
             timeBtwAttck -= Time.fixedDeltaTime;
         }
+    }
+
+    public void Damage(float damage)
+    {
+        health -= damage;
+        print(health);
     }
 
     private void Flip()
@@ -121,6 +152,11 @@ public class CharacterController2D : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 
     // Start is called before the first frame update

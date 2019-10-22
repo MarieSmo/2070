@@ -5,8 +5,8 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public Transform Player;
-    public float Offset;
-    Transform copy_Player;
+    Transform copyPlayer;
+    public float height = 0f;
 
     /*float Stop1, Stop2;
 
@@ -26,9 +26,8 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position = new Vector3(Player.position.x, 2.8f, -12+Offset);
-        copy_Player.SetPositionAndRotation(new Vector3(Player.position.x, 2.8f, 0), new Quaternion(0, 0, 0, 0));
-
-        transform.LookAt(copy_Player);
+        transform.position = new Vector3(Player.position.x, height, -12);
+        copyPlayer.SetPositionAndRotation(new Vector3(Player.position.x, height, 0), new Quaternion(0, 0, 0, 0));
+        transform.LookAt(copyPlayer);
     }
 }

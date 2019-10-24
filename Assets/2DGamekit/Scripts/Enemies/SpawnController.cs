@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
-
     public GameObject spawnLeft;
     public GameObject spawnRight;
     public Transform transformSpawnLeft;
@@ -18,13 +17,8 @@ public class SpawnController : MonoBehaviour
 
     private void Start()
     {
-        transformSpawnLeft = spawnLeft.transform;
-        transformSpawnRight = spawnRight.transform;
-
         checkSpawn();
-
-        transformSpawnLeft.transform.position = new Vector3(Player.position.x - DistanceToPlayer, 0, 0);
-        transformSpawnRight.transform.position = new Vector3(Player.position.x + DistanceToPlayer, 0, 0);
+        moveSpawns();
     }
 
     // Update is called once per frame
@@ -39,8 +33,8 @@ public class SpawnController : MonoBehaviour
             enemies[i].transform.parent = null;
         }
 
-        transformSpawnLeft.transform.position = new Vector3(Player.position.x - DistanceToPlayer, 0, 0);
-        transformSpawnRight.transform.position = new Vector3(Player.position.x + DistanceToPlayer, 0, 0);
+        moveSpawns();
+
     }
 
     private void checkSpawn()
@@ -62,5 +56,11 @@ public class SpawnController : MonoBehaviour
         {
             spawnRight.SetActive(true);
         }
+    }
+
+    private void moveSpawns()
+    {
+        transformSpawnLeft.transform.position = new Vector3(Player.position.x - DistanceToPlayer, 0, 0);
+        transformSpawnRight.transform.position = new Vector3(Player.position.x + DistanceToPlayer, 0, 0);
     }
 }

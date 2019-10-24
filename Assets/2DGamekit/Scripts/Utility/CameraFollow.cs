@@ -27,7 +27,7 @@ public class CameraFollow : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position = new Vector3(Player.position.x, height, -12);
-        copyPlayer.SetPositionAndRotation(new Vector3(Player.position.x, height, 0), new Quaternion(0, 0, 0, 0));
-        transform.LookAt(copyPlayer);
+        //copyPlayer.SetPositionAndRotation(new Vector3(Player.position.x, height, 0), new Quaternion(0, 0, 0, 0));
+        //transform.LookAt(copyPlayer);
     }
 }

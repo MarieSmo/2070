@@ -23,6 +23,7 @@ public class SpawnController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        moveSpawns();
         checkSpawn();
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -30,21 +31,19 @@ public class SpawnController : MonoBehaviour
         for(int i = 0; i < enemies.Length; i++)
         {
             enemies[i].transform.parent = null;
+            //enemies[i].GetComponent<EnemyBehavior2D>().player = GameObject.Find("Our_guy");
         }
-
-        moveSpawns();
-
     }
 
     private void checkSpawn()
     {
         if(spawnLeft.transform.position.x <= levelIni.position.x)
         {
-            spawnLeft.SetActive(false);
+            spawnLeft.GetComponent<EnemySpawner>().enabled = false;
         }
         else
         {
-            spawnLeft.SetActive(true);
+            spawnLeft.GetComponent<EnemySpawner>().enabled = true;
         }
 
         if (spawnRight.transform.position.x >= levelEnd.position.x)
@@ -59,7 +58,7 @@ public class SpawnController : MonoBehaviour
 
     private void moveSpawns()
     {
-        transformSpawnLeft.transform.position = new Vector3(Player.position.x - DistanceToPlayer, 0, 0);
-        transformSpawnRight.transform.position = new Vector3(Player.position.x + DistanceToPlayer, 0, 0);
+        transformSpawnLeft.transform.position = new Vector3(Player.position.x - DistanceToPlayer, 2, 0);
+        transformSpawnRight.transform.position = new Vector3(Player.position.x + DistanceToPlayer, 2, 0);
     }
 }

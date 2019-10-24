@@ -13,7 +13,6 @@ public class SpawnController : MonoBehaviour
     public Transform levelEnd;
     public Transform Player;
     public float DistanceToPlayer = 12f;
-    private Camera MainCamera = Camera.main;
 
     private void Start()
     {

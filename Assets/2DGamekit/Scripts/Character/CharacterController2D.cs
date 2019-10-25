@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -140,7 +141,7 @@ public class CharacterController2D : MonoBehaviour
     public void Damage(float damage)
     {
         health -= damage;
-        print(health);
+        HealthUI();
     }
 
     private void Flip()
@@ -162,12 +163,23 @@ public class CharacterController2D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //Prints main characters health on screen
+        HealthUI();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    // Modify health UI
+    void HealthUI()
+    {
+        //Health UI
+        GameObject healthUI = GameObject.Find("HealthNumber");
+
+        if(health >= 0) healthUI.GetComponent<Text>().text = health.ToString();
+        else            healthUI.GetComponent<Text>().text = "0";
     }
 }

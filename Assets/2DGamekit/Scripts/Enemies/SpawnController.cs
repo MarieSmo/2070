@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SpawnController : MonoBehaviour
 {
+    public Camera camera;
     public GameObject spawnLeft;
     public GameObject spawnRight;
     public Transform transformSpawnLeft;
@@ -12,10 +13,11 @@ public class SpawnController : MonoBehaviour
     public Transform levelIni;
     public Transform levelEnd;
     public Transform Player;
-    public float DistanceToPlayer = 12f;
+    public float SpawnDistance = 20f;
 
     private void Start()
     {
+        checkCollision();
         checkSpawn();
         moveSpawns();
     }
@@ -35,9 +37,19 @@ public class SpawnController : MonoBehaviour
         }
     }
 
+    //Modiy collision box if distance changes
+    private void checkCollision()
+    {
+        float halfHeight = camera.orthographicSize;
+        float halfWidth = camera.aspect * halfHeight;
+        spawnLeft.GetComponent<BoxCollider2D>().size = new Vector2(2*(SpawnDistance-halfWidth/2),100);
+    }
+
+    //Enable or disable spawns
     private void checkSpawn()
     {
-        if(spawnLeft.transform.position.x <= levelIni.position.x)
+
+        if(spawnLeft.transform.position.x <= (levelIni.position.x + spawnLeft.GetComponent<EnemySpawner>().spawnArea/2))
         {
             spawnLeft.GetComponent<EnemySpawner>().enabled = false;
         }
@@ -46,7 +58,7 @@ public class SpawnController : MonoBehaviour
             spawnLeft.GetComponent<EnemySpawner>().enabled = true;
         }
 
-        if (spawnRight.transform.position.x >= levelEnd.position.x)
+        if (spawnRight.transform.position.x >= (levelEnd.position.x - spawnLeft.GetComponent<EnemySpawner>().spawnArea/2))
         {
             spawnRight.SetActive(false);
         }
@@ -54,11 +66,13 @@ public class SpawnController : MonoBehaviour
         {
             spawnRight.SetActive(true);
         }
+
     }
 
+    //Move spawns to the desired position
     private void moveSpawns()
     {
-        transformSpawnLeft.transform.position = new Vector3(Player.position.x - DistanceToPlayer, 2, 0);
-        transformSpawnRight.transform.position = new Vector3(Player.position.x + DistanceToPlayer, 2, 0);
+        transformSpawnLeft.transform.position = new Vector3(camera.gameObject.transform.position.x - SpawnDistance, 2, 0);
+        transformSpawnRight.transform.position = new Vector3(camera.gameObject.transform.position.x + SpawnDistance, 2, 0);
     }
 }

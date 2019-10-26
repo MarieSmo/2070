@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform Player;
+    public Camera camera;
     public Transform middleWave;
-    Transform copyPlayer;
+    public Transform levelEnd;
+    public Transform Player;
     public float height = 0f;
+    Transform copyPlayer;
     bool attached;
 
     private void Start()
@@ -16,7 +18,7 @@ public class CameraFollow : MonoBehaviour
         attached = true;
     }
 
-    void TryToAttached()
+    void TryToAttach()
     {
         attached = true;
         Collider2D[] enemies = Physics2D.OverlapCircleAll(middleWave.position, 15);
@@ -31,13 +33,19 @@ public class CameraFollow : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(transform.position.x <= Player.position.x && attached)
+        float halfHeight = camera.orthographicSize;
+        float halfWidth = camera.aspect * halfHeight;
+        //Follow player if he goes to the right and camera is not at the end
+        if (transform.position.x <= Player.position.x 
+            && (transform.position.x + halfWidth/2) <= levelEnd.position.x
+            && attached)
             transform.position = new Vector3(Player.position.x, height, -12);
 
-        if (middleWave.position.x - 0.5 <= transform.position.x && middleWave.position.x + 0.5 >= transform.position.x)
+        //Fix camera in a wave
+        if (middleWave != null && middleWave.position.x - 0.5 <= transform.position.x && middleWave.position.x + 0.5 >= transform.position.x)
             attached = false;
 
         if (!attached)
-            TryToAttached();
+            TryToAttach();
     }
 }

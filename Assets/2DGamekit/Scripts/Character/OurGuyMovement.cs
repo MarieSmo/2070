@@ -28,6 +28,9 @@ public class OurGuyMovement : MonoBehaviour
         animator.SetFloat("speed", Mathf.Abs(horizontalMove));
 
         jumpMove = Input.GetButtonDown("Jump");
+        if (jumpMove) {
+            print("jump input");
+        }
         fistAttack = Input.GetKey(KeyCode.G);
         kickAttack = Input.GetKey(KeyCode.H);
     }
@@ -37,6 +40,5 @@ public class OurGuyMovement : MonoBehaviour
     {
         controller.Move(horizontalMove, jumpMove);
         controller.Attack(fistAttack, kickAttack);
-        jumpMove = false;
     }
 }

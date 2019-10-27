@@ -71,8 +71,15 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    public void Move(float move, bool jump)
-    {
+    public void Move(float move, bool jump) {
+        // If the player should jump...
+        if (m_Grounded && jump) {
+            print("jump");
+            // Add a vertical force to the player.
+            m_Grounded = false;
+            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+        }
+
         //only control the player if grounded or airControl is turned on
         if (m_Grounded || m_AirControl)
         {           
@@ -101,13 +108,6 @@ public class CharacterController2D : MonoBehaviour
             Die();
         }
 
-        // If the player should jump...
-        if (m_Grounded && jump)
-        {
-            // Add a vertical force to the player.
-            m_Grounded = false;
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-        }
     }
 
     public void Attack(bool punch, bool kick) {

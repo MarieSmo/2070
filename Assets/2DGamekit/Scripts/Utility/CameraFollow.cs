@@ -15,7 +15,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Start()
     {
-        transform.position = new Vector3(7, height, -12);
+        transform.position = new Vector3(initialPositionOfCamera.position.x, height, -12);
     }
 
     // This function counts the number of enemies that are in an radius of 20 from the middle of the wave screen

@@ -33,7 +33,7 @@ public class SpawnController : MonoBehaviour
         for(int i = 0; i < enemies.Length; i++)
         {
             enemies[i].transform.parent = null;
-            //enemies[i].GetComponent<EnemyBehavior2D>().player = GameObject.Find("Our_guy");
+            enemies[i].GetComponent<EnemyBehavior2D>().player = GameObject.Find("Our_guy");
         }
     }
 
@@ -43,28 +43,29 @@ public class SpawnController : MonoBehaviour
         float halfHeight = camera.orthographicSize;
         float halfWidth = camera.aspect * halfHeight;
         spawnLeft.GetComponent<BoxCollider2D>().size = new Vector2(2*(SpawnDistance-halfWidth/2),100);
+        spawnRight.GetComponent<BoxCollider2D>().size = new Vector2(2*(SpawnDistance-halfWidth/2),100);
     }
 
     //Enable or disable spawns
     private void checkSpawn()
     {
 
-        if(spawnLeft.transform.position.x <= (levelIni.position.x + spawnLeft.GetComponent<EnemySpawner>().spawnArea/2))
+        if(spawnLeft.transform.position.x <= levelIni.position.x)
         {
-            spawnLeft.GetComponent<EnemySpawner>().enabled = false;
+            spawnLeft.GetComponent<SpawnEnemies>().enabled = false;
         }
         else
         {
-            spawnLeft.GetComponent<EnemySpawner>().enabled = true;
+            spawnLeft.GetComponent<SpawnEnemies>().enabled = true;
         }
 
-        if (spawnRight.transform.position.x >= (levelEnd.position.x - spawnLeft.GetComponent<EnemySpawner>().spawnArea/2))
+        if (spawnRight.transform.position.x >= levelEnd.position.x)
         {
-            spawnRight.SetActive(false);
+            spawnRight.GetComponent<SpawnEnemies>().enabled = false;
         }
         else
         {
-            spawnRight.SetActive(true);
+            spawnRight.GetComponent<SpawnEnemies>().enabled = true;
         }
 
     }

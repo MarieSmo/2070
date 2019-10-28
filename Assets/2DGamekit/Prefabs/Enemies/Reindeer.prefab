@@ -153,8 +153,8 @@ MonoBehaviour:
   whatIsEnnemy:
     serializedVersion: 2
     m_Bits: 8192
-  health: 20
-  damage: 12
+  health: 12
+  damage: 8
   startTimeBtwAttck: 0.6
   velocity: 4
   player: {fileID: 0}

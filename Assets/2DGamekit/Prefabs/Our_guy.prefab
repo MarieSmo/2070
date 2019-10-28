@@ -209,10 +209,10 @@ MonoBehaviour:
   startTimeBtwAttck: 0.5
   punchPos: {fileID: 1380274184079734398}
   kickPos: {fileID: 1380274183794010912}
-  punchRange: 0.7
-  kickRange: 0
-  punchDamage: 0
-  kickDamage: 0
+  punchRange: 0.5
+  kickRange: 0.5
+  punchDamage: 3
+  kickDamage: 5
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -231,6 +231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1380274184504213435}
+  animator: {fileID: 0}
 --- !u!1 &1380274184765113684
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class OurGuyMovement : MonoBehaviour
 {
     public CharacterController2D controller;
+    public Animator animator;
 
     private float horizontalMove = 0f;
     private bool jumpMove = false;
@@ -24,7 +25,12 @@ public class OurGuyMovement : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed * Time.fixedDeltaTime;
+        animator.SetFloat("speed", Mathf.Abs(horizontalMove));
+
         jumpMove = Input.GetButtonDown("Jump");
+        if (jumpMove) {
+            print("jump input");
+        }
         fistAttack = Input.GetKey(KeyCode.G);
         kickAttack = Input.GetKey(KeyCode.H);
     }
@@ -34,6 +40,5 @@ public class OurGuyMovement : MonoBehaviour
     {
         controller.Move(horizontalMove, jumpMove);
         controller.Attack(fistAttack, kickAttack);
-        jumpMove = false;
     }
 }

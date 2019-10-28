@@ -44,6 +44,7 @@ public class SpawnController : MonoBehaviour
         float halfWidth = camera.aspect * halfHeight;
         spawnLeft.GetComponent<BoxCollider2D>().size = new Vector2(2*(SpawnDistance-halfWidth/2),100);
         spawnRight.GetComponent<BoxCollider2D>().size = new Vector2(2*(SpawnDistance-halfWidth/2),100);
+        print(2 * (SpawnDistance - halfWidth / 2));
     }
 
     //Enable or disable spawns

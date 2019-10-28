@@ -42,16 +42,16 @@ public class CameraFollow : MonoBehaviour
         bool attachCamera = false;
 
         // the camera won't move until the player reaches the camera initial position
-        if (Player.position.x <= initialPositionOfCamera.position.x)
+        if (Player != null && Player.position.x <= initialPositionOfCamera.position.x)
         {
             attachCamera = false;
         }
-        else if (Player.position.x <= endPositionOfCamera.position.x)
+        else if (Player != null && Player.position.x <= endPositionOfCamera.position.x)
         {
             // area between the initial position of the camera and the end of the wave
             attachCamera = true;
             // area between the middle of the wave and the limit of it (this need a fix)
-            if (Player.position.x >= middleWave.position.x && Player.position.x <= middleWave.position.x + 10) // change this 10 for an object or whatever thing to state the limit of the screen
+            if (Player != null && Player.position.x >= middleWave.position.x && Player.position.x <= middleWave.position.x + 10) // change this 10 for an object or whatever thing to state the limit of the screen
             {
                 attachCamera = false;
                 int enemyCounter = CountEnemiesInArea(middleWave.position);
@@ -93,7 +93,7 @@ public class CameraFollow : MonoBehaviour
             }
         }
         // if attached the camera moves, else it stops
-        else if (transform.position.x <= Player.position.x && attached)
+        else if (Player != null && transform.position.x <= Player.position.x && attached)
             transform.position = new Vector3(Player.position.x, height, -12);
     }
 }

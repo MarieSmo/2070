@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
+    public Camera camera;
     public Transform Player;
     public Transform middleWave;
     public Transform initialPositionOfCamera;
@@ -48,10 +49,12 @@ public class CameraFollow : MonoBehaviour
         }
         else if (Player != null && Player.position.x <= endPositionOfCamera.position.x)
         {
+            float halfHeight = camera.orthographicSize;
+            float halfWidth = camera.aspect * halfHeight;
             // area between the initial position of the camera and the end of the wave
             attachCamera = true;
             // area between the middle of the wave and the limit of it (this need a fix)
-            if (Player != null && Player.position.x >= middleWave.position.x && Player.position.x <= middleWave.position.x + 10) // change this 10 for an object or whatever thing to state the limit of the screen
+            if (Player != null && Player.position.x >= middleWave.position.x && Player.position.x <= middleWave.position.x + halfWidth/2) // change this 10 for an object or whatever thing to state the limit of the screen
             {
                 attachCamera = false;
                 int enemyCounter = CountEnemiesInArea(middleWave.position);
@@ -61,6 +64,11 @@ public class CameraFollow : MonoBehaviour
                     // the camera needs to move smoothly towards the player
                     cameraNeedSmooth = true;
                     attachCamera = true;
+                    //disable camera collision
+                }
+                else
+                {
+                    // enable camera collision
                 }
             }
         }

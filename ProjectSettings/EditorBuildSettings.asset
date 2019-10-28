@@ -42,6 +42,6 @@ EditorBuildSettings:
     path: Assets/2DGamekit/Scenes/HelloWorld.unity
     guid: 63177804a7c0d944bb0f1a82afeb63f2
   - enabled: 1
-    path: Assets/2DGamekit/Scenes/HelloWord2.unity
+    path: Assets/2DGamekit/Scenes/Prototype.unity
     guid: 5e953994c2e42724fa80de259d06dd2c
   m_configObjects: {}

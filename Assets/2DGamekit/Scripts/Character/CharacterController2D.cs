@@ -8,7 +8,6 @@ public class CharacterController2D : MonoBehaviour
 {
     [SerializeField] private float m_JumpForce = 400f;                          // Amount of force added when the player jumps.
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
-    [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
 
@@ -31,20 +30,9 @@ public class CharacterController2D : MonoBehaviour
     public float kickDamage;
 
 
-    [Header("Events")]
-    [Space]
-
-    public UnityEvent OnLandEvent;
-
-    [System.Serializable]
-    public class BoolEvent : UnityEvent<bool> { }
-
-    private void Awake()
-    {
+    private void Awake() {
+        HealthUI();
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-
-        if (OnLandEvent == null)
-            OnLandEvent = new UnityEvent();
 
         punchDamage = 12f;
         kickDamage = 7f;
@@ -54,7 +42,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        bool wasGrounded = m_Grounded;
         m_Grounded = false;
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -65,41 +52,33 @@ public class CharacterController2D : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 m_Grounded = true;
-                if (!wasGrounded)
-                    OnLandEvent.Invoke();
+                break;
             }
         }
     }
 
     public void Move(float move, bool jump) {
-        // If the player should jump...
-        if (m_Grounded && jump) {
-            print("jump");
-            // Add a vertical force to the player.
-            m_Grounded = false;
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-        }
 
         //only control the player if grounded or airControl is turned on
-        if (m_Grounded || m_AirControl)
-        {           
+        if (m_Grounded)
+        {
+            if (jump) {
+                print("jump");
+                // Add a vertical force to the player.
+                m_Grounded = false;
+                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            } else {
+                // Move the character by finding the target velocity
+                Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+                // And then smoothing it out and applying it to the character
+                m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
-            // Move the character by finding the target velocity
-            Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
-            // And then smoothing it out and applying it to the character
-            m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
-
-            // If the input is moving the player right and the player is facing left...
-            if (move > 0 && !m_FacingRight)
-            {
-                // ... flip the player.
-                Flip();
-            }
-            // Otherwise if the input is moving the player left and the player is facing right...
-            else if (move < 0 && m_FacingRight)
-            {
-                // ... flip the player.
-                Flip();
+                if (move > 0 && !m_FacingRight) {
+                    Flip();
+                }
+                else if (move < 0 && m_FacingRight) {
+                    Flip();
+                }
             }
         }
 
@@ -144,42 +123,26 @@ public class CharacterController2D : MonoBehaviour
         HealthUI();
     }
 
+    // Modify health UI
+    void HealthUI() {
+        //Health UI
+        GameObject healthUI = GameObject.Find("HealthNumber");
+
+        if (health >= 0) healthUI.GetComponent<Text>().text = health.ToString();
+        else healthUI.GetComponent<Text>().text = "YOU DIED";
+    }
+
+    private void Die() {
+        Destroy(gameObject);
+    }
+
     private void Flip()
     {
-        // Switch the way the player is labelled as facing.
         m_FacingRight = !m_FacingRight;
 
-        // Multiply the player's x local scale by -1.
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
     }
 
-    private void Die()
-    {
-        Destroy(gameObject);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Prints main characters health on screen
-        HealthUI();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    // Modify health UI
-    void HealthUI()
-    {
-        //Health UI
-        GameObject healthUI = GameObject.Find("HealthNumber");
-
-        if(health >= 0) healthUI.GetComponent<Text>().text = health.ToString();
-        else            healthUI.GetComponent<Text>().text = "0";
-    }
 }

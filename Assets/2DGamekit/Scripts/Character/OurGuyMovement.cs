@@ -7,38 +7,43 @@ public class OurGuyMovement : MonoBehaviour
     public CharacterController2D controller;
     public Animator animator;
 
-    private float horizontalMove = 0f;
-    private bool jumpMove = false;
-    private bool fistAttack = false;
-    private bool kickAttack = false;
-
-    float runSpeed = 40.0f;
-
-    // Start is called before the first frame update
-    void Start()
+    private float horizontalMove;
+    private float jumpMove;
+    private bool fistAttack;
+    private bool kickAttack;
+    float runSpeed;
+    
+    void Awake()
     {
-        
-    }
+        horizontalMove = 0f;
+        jumpMove = 0f;
+        fistAttack = false;
+        kickAttack = false;
+        runSpeed = 40.0f;
+}
 
     // Update is called once per frame
     //We wanna get the Inputs in here
     void Update()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed * Time.fixedDeltaTime;
+        horizontalMove = Input.GetAxis("Horizontal") * runSpeed * Time.fixedDeltaTime;
         animator.SetFloat("speed", Mathf.Abs(horizontalMove));
 
-        jumpMove = Input.GetButtonDown("Jump");
-        if (jumpMove) {
-            print("jump input");
+        jumpMove = Input.GetAxis("Jump");
+        fistAttack = Input.GetButtonDown("Punch");
+        if (fistAttack) {
+            print("fist_input");
         }
-        fistAttack = Input.GetKey(KeyCode.G);
-        kickAttack = Input.GetKey(KeyCode.H);
+        kickAttack = Input.GetButtonDown("Kick");
+        if (kickAttack) { print("kick_inut"); }
     }
 
     //And make our player move here
     private void FixedUpdate()
     {
-        controller.Move(horizontalMove, jumpMove);
+        bool jump = jumpMove > 0 ? true : false;
+
+        controller.Move(horizontalMove, jump);
         controller.Attack(fistAttack, kickAttack);
     }
 }

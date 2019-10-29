@@ -149,14 +149,14 @@ MonoBehaviour:
     m_Bits: 3222265111
   m_GroundCheck: {fileID: 841208005409150306}
   attackPos: {fileID: 841208005608129563}
-  attackRange: 1
+  attackRange: 0.65
   whatIsEnnemy:
     serializedVersion: 2
     m_Bits: 8192
-  health: 8
-  damage: 9
-  startTimeBtwAttck: 1
-  velocity: 3
+  health: 14
+  damage: 6
+  startTimeBtwAttck: 0.85
+  velocity: 3.8
   player: {fileID: 0}
   OnLandEvent:
     m_PersistentCalls:

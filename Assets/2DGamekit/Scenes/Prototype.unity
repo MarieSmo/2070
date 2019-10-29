@@ -5414,18 +5414,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1380274184504213439, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1380274184504213439, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1380274184504213439, guid: 8bc7396137669b64593d1fdb69bc796e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1380274184504213435, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
@@ -5435,13 +5430,18 @@ PrefabInstance:
     - target: {fileID: 1380274184504213435, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
       propertyPath: m_JumpForce
-      value: 1000
+      value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 1380274184504213434, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
       propertyPath: animator
       value: 
       objectReference: {fileID: 844832240}
+    - target: {fileID: 1380274184504213438, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bc7396137669b64593d1fdb69bc796e, type: 3}
 --- !u!1001 &2476822555718724043

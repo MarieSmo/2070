@@ -123,8 +123,8 @@ public class CharacterController2D : MonoBehaviour
     //Displays some visual infos, for example a circle showing the range
     void OnDrawGizmos() {
         Gizmos.color = Color.red;
-        //Gizmos.DrawWireSphere(punchPos.position, punchRange);
-        //Gizmos.DrawWireSphere(kickPos.position, kickRange);
+        Gizmos.DrawWireSphere(punchPos.position, punchRange);
+        Gizmos.DrawWireSphere(kickPos.position, kickRange);
     }
 
     public void Damage(float damage)

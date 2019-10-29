@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380274183794010913}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.19, y: 0.78, z: 0}
+  m_LocalPosition: {x: 0.41, y: -0.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1380274184504213439}
@@ -54,7 +54,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380274184079734399}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.21, y: 1.26, z: 0}
+  m_LocalPosition: {x: 0.2, y: 0.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1380274184504213439}
@@ -90,7 +90,7 @@ Transform:
   m_GameObject: {fileID: 1380274184504213436}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1380274184765113687}
   - {fileID: 1380274184079734398}
@@ -156,7 +156,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: c4d7d6470acd7bf45971042161c6e018, type: 3}
+  m_Sprite: {fileID: 6269652844809206854, guid: a3e4dde80d66def488b697c6d7fd22ac,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -180,8 +181,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0048342347, y: 0.97081876}
-  m_Size: {x: 0.52098525, y: 2.108273}
+  m_Offset: {x: -0.2475462, y: 0.97081876}
+  m_Size: {x: 1.5907688, y: 2.108273}
   m_Direction: 0
 --- !u!114 &1380274184504213435
 MonoBehaviour:
@@ -195,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f73a77fc41e4444bb9cb99d2854dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 1500
+  m_JumpForce: 700
   m_MovementSmoothing: 0.05
   m_WhatIsGround:
     serializedVersion: 2
@@ -208,8 +209,8 @@ MonoBehaviour:
   attackRate: 0
   punchPos: {fileID: 1380274184079734398}
   kickPos: {fileID: 1380274183794010912}
-  punchRange: 0.8
-  kickRange: 1.04
+  punchRange: 1.18
+  kickRange: 1.43
   punchDamage: 3
   kickDamage: 5
 --- !u!114 &1380274184504213434
@@ -250,7 +251,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380274184765113684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -3.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1380274184504213439}

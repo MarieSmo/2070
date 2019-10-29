@@ -118,7 +118,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08714509, y: -0.15771961}
+  m_Offset: {x: -0.06914389, y: -0.15771961}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -129,7 +129,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9.36, y: 4.53}
+  m_Size: {x: 2.915509, y: 4.53}
   m_EdgeRadius: 0
 --- !u!114 &3784148227913888780
 MonoBehaviour:
@@ -148,21 +148,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3222265111
   m_GroundCheck: {fileID: 3784148227947830483}
+  attackRate: 1
   attackPos: {fileID: 3784148228155198890}
-  attackRange: 0.5
+  attackRange: 1.66
   whatIsEnnemy:
     serializedVersion: 2
     m_Bits: 8192
   health: 20
   damage: 15
-  startTimeBtwAttck: 1.3
   velocity: 2.5
   player: {fileID: 0}
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &3784148227947830480
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3784148228155198891}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.79, y: 0, z: 0}
+  m_LocalPosition: {x: 0.1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3784148227913888768}

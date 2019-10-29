@@ -31,11 +31,7 @@ public class OurGuyMovement : MonoBehaviour
 
         jumpMove = Input.GetAxis("Jump");
         fistAttack = Input.GetButtonDown("Punch");
-        if (fistAttack) {
-            print("fist_input");
-        }
         kickAttack = Input.GetButtonDown("Kick");
-        if (kickAttack) { print("kick_inut"); }
     }
 
     //And make our player move here
@@ -44,6 +40,9 @@ public class OurGuyMovement : MonoBehaviour
         bool jump = jumpMove > 0 ? true : false;
 
         controller.Move(horizontalMove, jump);
-        controller.Attack(fistAttack, kickAttack);
+        if (fistAttack || kickAttack) {
+            controller.Attack(fistAttack, kickAttack);
+        }
+        
     }
 }

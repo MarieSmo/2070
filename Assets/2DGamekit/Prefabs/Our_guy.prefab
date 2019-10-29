@@ -197,7 +197,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_JumpForce: 1500
   m_MovementSmoothing: 0.05
-  m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 3222265623
@@ -206,18 +205,13 @@ MonoBehaviour:
   whatIsEnnemy:
     serializedVersion: 2
     m_Bits: 512
-  startTimeBtwAttck: 0.5
+  attackRate: 0
   punchPos: {fileID: 1380274184079734398}
   kickPos: {fileID: 1380274183794010912}
-  punchRange: 0.5
-  kickRange: 0.5
+  punchRange: 0.8
+  kickRange: 1.04
   punchDamage: 3
   kickDamage: 5
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1380274184504213434
 MonoBehaviour:
   m_ObjectHideFlags: 0

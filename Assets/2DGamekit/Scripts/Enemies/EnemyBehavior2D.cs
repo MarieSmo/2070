@@ -17,32 +17,20 @@ public class EnemyBehavior2D : MonoBehaviour
     private bool m_FacingRight = true;  // For determining which way the enemy is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
 
-    private float timeBtwAttck;
+    private float timeBeforeAttck;
+    public float attackRate;
     public Transform attackPos;
     public float attackRange;
     public LayerMask whatIsEnnemy;
     public float health = 15f;
     public float damage = 10f;
-    public float startTimeBtwAttck = 0.3f;
     public float velocity;
 
     public GameObject player;
 
-
-    [Header("Events")]
-    [Space]
-
-    public UnityEvent OnLandEvent;
-
-    [System.Serializable]
-    public class BoolEvent : UnityEvent<bool> { }
-
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-
-        if (OnLandEvent == null)
-            OnLandEvent = new UnityEvent();
     }
 
     private void FixedUpdate()
@@ -60,8 +48,6 @@ public class EnemyBehavior2D : MonoBehaviour
                 if (colliders[i].gameObject != gameObject)
                 {
                     m_Grounded = true;
-                    if (!wasGrounded)
-                        OnLandEvent.Invoke();
                 }
             }
 
@@ -78,9 +64,19 @@ public class EnemyBehavior2D : MonoBehaviour
             else
             {
                 move = player.transform.position.x > attackPos.position.x ? 1 : -1;
+                Move(move);
             }
-            Move(move);
         }
+
+        if (timeBeforeAttck > 0) {
+            timeBeforeAttck -= Time.fixedDeltaTime;
+        }
+    }
+
+    //Displays some visual infos, for example a circle showing the range
+    void OnDrawGizmos() {
+        Gizmos.color = Color.green;
+        //Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
 
     public void Move(float move)
@@ -100,25 +96,20 @@ public class EnemyBehavior2D : MonoBehaviour
 
     public void Attack()
     {
-        if (timeBtwAttck <= 0)
+        if (timeBeforeAttck <= 0)
         {
-            timeBtwAttck = startTimeBtwAttck;
+            timeBeforeAttck = attackRate;
             Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnnemy);
             for (int i = 0; i < damageableEnemies.Length; i++)
             {
                 player.GetComponent<CharacterController2D>().Damage(damage);
             }
         }
-        else
-        {
-            timeBtwAttck -= Time.fixedDeltaTime;
-        }
     }
 
     public void Damage(float damage)
     {
         health -= damage;
-        print(health);
     }
 
     private void Flip()

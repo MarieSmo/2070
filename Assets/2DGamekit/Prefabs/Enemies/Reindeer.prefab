@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1480037878246296837}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.063796, y: 1.2894378, z: 0}
-  m_LocalScale: {x: 0.67, y: 0.69, z: 0.1}
+  m_LocalScale: {x: 0.56, y: 0.63, z: 0.1}
   m_Children:
   - {fileID: 1480037878406079963}
   - {fileID: 1480037878470292642}
@@ -148,21 +148,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3222265111
   m_GroundCheck: {fileID: 1480037878406079963}
+  attackRate: 0.7
   attackPos: {fileID: 1480037878470292642}
-  attackRange: 0.8
+  attackRange: 1.49
   whatIsEnnemy:
     serializedVersion: 2
     m_Bits: 8192
   health: 12
   damage: 7
-  startTimeBtwAttck: 0.65
   velocity: 4.2
   player: {fileID: 0}
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1480037878406079960
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1480037878470292643}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.79, y: 0, z: 0}
+  m_LocalPosition: {x: 0.81, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1480037878246296840}

@@ -14,14 +14,15 @@ public class CharacterController2D : MonoBehaviour
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;            // Whether or not the player is grounded.
     private Rigidbody2D m_Rigidbody2D;
+    private GameObject healthUI;
 
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
     public float health;
 
     public LayerMask whatIsEnnemy;
-    private float timeBtwAttck;
-    public float startTimeBtwAttck;
+    private float timeBeforeAttck;
+    public float attackRate;
     public Transform punchPos;
     public Transform kickPos;
     public float punchRange;
@@ -31,8 +32,11 @@ public class CharacterController2D : MonoBehaviour
 
 
     private void Awake() {
-        HealthUI();
+        healthUI = GameObject.Find("HealthNumber");
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+
+        attackRate = 0.7f;
+        timeBeforeAttck = 0f;
 
         punchDamage = 12f;
         kickDamage = 7f;
@@ -42,8 +46,9 @@ public class CharacterController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        m_Grounded = false;
+        HealthUI();
 
+        m_Grounded = false;
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
@@ -55,6 +60,10 @@ public class CharacterController2D : MonoBehaviour
                 break;
             }
         }
+
+        if (timeBeforeAttck > 0) {
+            timeBeforeAttck -= Time.fixedDeltaTime;
+        }
     }
 
     public void Move(float move, bool jump) {
@@ -63,7 +72,6 @@ public class CharacterController2D : MonoBehaviour
         if (m_Grounded)
         {
             if (jump) {
-                print("jump");
                 // Add a vertical force to the player.
                 m_Grounded = false;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
@@ -90,31 +98,33 @@ public class CharacterController2D : MonoBehaviour
     }
 
     public void Attack(bool punch, bool kick) {
-        if (timeBtwAttck <= 0)
+        if (timeBeforeAttck <= 0)
         {
-            timeBtwAttck = startTimeBtwAttck;
+            timeBeforeAttck = attackRate;
             if (punch)
             {
                 Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(punchPos.position, punchRange, whatIsEnnemy);
-                for (int i = 0; i < damageableEnemies.Length; i++)
-                {
-                    damageableEnemies[i].GetComponent<EnemyBehavior2D>().Damage(punchDamage);
+                if (damageableEnemies.Length > 0) {
+                    damageableEnemies[0].GetComponent<EnemyBehavior2D>().Damage(punchDamage);
                     print("punch");
                 }
             }
             else if (kick)
             {
                 Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(kickPos.position, kickRange, whatIsEnnemy);
-                for (int i = 0; i < damageableEnemies.Length; i++)
-                {
-                    damageableEnemies[i].GetComponent<EnemyBehavior2D>().Damage(kickDamage);
+                if (damageableEnemies.Length > 0) {
+                    damageableEnemies[0].GetComponent<EnemyBehavior2D>().Damage(kickDamage);
                     print("kick");
                 }
             }
-        } else
-        {
-            timeBtwAttck -= Time.fixedDeltaTime;
         }
+    }
+
+    //Displays some visual infos, for example a circle showing the range
+    void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        //Gizmos.DrawWireSphere(punchPos.position, punchRange);
+        //Gizmos.DrawWireSphere(kickPos.position, kickRange);
     }
 
     public void Damage(float damage)
@@ -125,9 +135,6 @@ public class CharacterController2D : MonoBehaviour
 
     // Modify health UI
     void HealthUI() {
-        //Health UI
-        GameObject healthUI = GameObject.Find("HealthNumber");
-
         if (health >= 0) healthUI.GetComponent<Text>().text = health.ToString();
         else healthUI.GetComponent<Text>().text = "YOU DIED";
     }

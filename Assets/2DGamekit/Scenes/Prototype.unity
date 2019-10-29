@@ -318,7 +318,7 @@ SortingGroup:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241149435}
-  m_Enabled: 0
+  m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -100
@@ -403,6 +403,10 @@ MonoBehaviour:
   - count: 2
     enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed, type: 3}
     name: Rabbit
+    rate: 1
+  - count: 1
+    enemy: {fileID: 3784148227913888768, guid: 076336f9be38dc44c937235aa7a112cf, type: 3}
+    name: Bear
     rate: 1
 --- !u!4 &314864149
 Transform:
@@ -546,8 +550,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398877942}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 37, y: 0.36980554, z: -10.106171}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 84.28, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -780,13 +784,9 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1241663342956346, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 3}
-      propertyPath: m_Name
-      value: MainCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 1241663342956346, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 3}
-      propertyPath: m_Layer
-      value: 14
+    - target: {fileID: 4763125205162874, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -13.5
       objectReference: {fileID: 0}
     - target: {fileID: 20705072592914946, guid: bb0018ce3a8caa643b44f8487c34bd25,
         type: 3}
@@ -798,10 +798,6 @@ PrefabInstance:
       propertyPath: field of view
       value: 45.3
       objectReference: {fileID: 0}
-    - target: {fileID: 1275616980007928, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 3}
-      propertyPath: m_Layer
-      value: 14
-      objectReference: {fileID: 0}
     - target: {fileID: 1901066754691726, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 3}
       propertyPath: m_Layer
       value: 14
@@ -810,9 +806,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4763125205162874, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -13.5
+    - target: {fileID: 1241663342956346, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 3}
+      propertyPath: m_Name
+      value: MainCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 1241663342956346, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275616980007928, guid: bb0018ce3a8caa643b44f8487c34bd25, type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 114441997961109578, guid: bb0018ce3a8caa643b44f8487c34bd25,
         type: 3}
@@ -1361,13 +1365,13 @@ MonoBehaviour:
     enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed, type: 3}
     name: Rabbit
     rate: 1
-  - count: 3
-    enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed, type: 3}
-    name: Rabbit
+  - count: 2
+    enemy: {fileID: 841208005379407281, guid: c00a4c9abcaed35409805ac70653b39a, type: 3}
+    name: Boar
     rate: 1
-  - count: 4
-    enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed, type: 3}
-    name: Rabbit
+  - count: 1
+    enemy: {fileID: 1480037878246296840, guid: f8cf11c194cf58a4b87e4886329e36a4, type: 3}
+    name: Reindeer
     rate: 1
 --- !u!4 &1430010352
 Transform:
@@ -5423,16 +5427,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1380274184504213434, guid: 8bc7396137669b64593d1fdb69bc796e,
-        type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 844832240}
     - target: {fileID: 1380274184504213435, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
       propertyPath: punchRange
       value: 0.8
       objectReference: {fileID: 0}
+    - target: {fileID: 1380274184504213435, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: m_JumpForce
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380274184504213434, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 844832240}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bc7396137669b64593d1fdb69bc796e, type: 3}
 --- !u!1001 &2476822555718724043
@@ -5450,7 +5459,7 @@ PrefabInstance:
     - target: {fileID: 1272009563900578983, guid: e737a9b198a0976478243b37452acdcd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 47
+      value: 39.09
       objectReference: {fileID: 0}
     - target: {fileID: 1272009563900578983, guid: e737a9b198a0976478243b37452acdcd,
         type: 3}

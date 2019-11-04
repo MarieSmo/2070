@@ -5417,6 +5417,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1380274184504213435, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 844832240}
+    - target: {fileID: 1380274184504213435, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: m_JumpForce
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 1380274184504213434, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
       propertyPath: animator

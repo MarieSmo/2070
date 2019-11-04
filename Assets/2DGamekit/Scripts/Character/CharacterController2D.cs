@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,6 +16,7 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private Transform m_Transform;
     private GameObject healthUI;
+    public Animator animator;
 
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
@@ -46,11 +48,12 @@ public class CharacterController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (health <= 0) {
+            Die();
+        }
         HealthUI();
 
         m_Grounded = false;
-        // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
-        // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
         {
@@ -64,39 +67,32 @@ public class CharacterController2D : MonoBehaviour
         if (timeBeforeAttck > 0) {
             timeBeforeAttck -= Time.fixedDeltaTime;
         }
+        animator.SetBool("punch", false);
+        animator.SetBool("kick", false);
     }
 
     public void Move(float move, bool jump) {
-        if (m_Grounded)
+        if (m_Grounded && jump)
         {
-            if (jump) {
-                m_Grounded = false;
-                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-            } else {
-                m_Rigidbody2D.velocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
-
-                if (move > 0 && !m_FacingRight) {
-                    Flip();
-                }
-                else if (move < 0 && m_FacingRight) {
-                    Flip();
-                }
-            }
+            m_Grounded = false;
+            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
 
-        if (health <= 0)
-        {
-            Die();
+        m_Rigidbody2D.velocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+        if (move > 0 && !m_FacingRight) {
+            Flip();
         }
-
+        else if (move < 0 && m_FacingRight) {
+            Flip();
+        }
     }
 
     public void Attack(bool punch, bool kick) {
         if (timeBeforeAttck <= 0)
         {
             timeBeforeAttck = attackRate;
-            if (punch)
-            {
+            if (punch) { 
+                animator.SetBool("punch", true);
                 Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(punchPos.position, punchRange, whatIsEnnemy);
                 if (damageableEnemies.Length > 0) {
                     damageableEnemies[0].GetComponent<EnemyBehavior2D>().Damage(punchDamage);
@@ -105,6 +101,7 @@ public class CharacterController2D : MonoBehaviour
             }
             else if (kick)
             {
+                animator.SetBool("kick", true);
                 Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(kickPos.position, kickRange, whatIsEnnemy);
                 if (damageableEnemies.Length > 0) {
                     damageableEnemies[0].GetComponent<EnemyBehavior2D>().Damage(kickDamage);

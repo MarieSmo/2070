@@ -395,19 +395,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ec20d24a383184bb19a3472242be3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenWaves: 3
+  state: 2
   spawnPoints:
   - {fileID: 314864149}
-  state: 2
-  timeBetweenWaves: 3
   waves:
   - count: 2
-    enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed, type: 3}
-    name: Rabbit
     rate: 1
-  - count: 1
-    enemy: {fileID: 1480037878246296840, guid: f8cf11c194cf58a4b87e4886329e36a4, type: 3}
-    name: Reindeer
-    rate: 1
+    enemies:
+    - enemy: {fileID: 841208005379407281, guid: c00a4c9abcaed35409805ac70653b39a,
+        type: 3}
+      weight: 100
 --- !u!4 &314864149
 Transform:
   m_ObjectHideFlags: 0
@@ -1356,23 +1354,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ec20d24a383184bb19a3472242be3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenWaves: 3
+  state: 2
   spawnPoints:
   - {fileID: 1430010352}
-  state: 2
-  timeBetweenWaves: 3
   waves:
-  - count: 2
-    enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed, type: 3}
-    name: Rabbit
-    rate: 1
-  - count: 2
-    enemy: {fileID: 841208005379407281, guid: c00a4c9abcaed35409805ac70653b39a, type: 3}
-    name: Boar
-    rate: 1
-  - count: 1
-    enemy: {fileID: 3784148227913888768, guid: 076336f9be38dc44c937235aa7a112cf, type: 3}
-    name: Bear
-    rate: 1
+  - count: 4
+    rate: 4
+    enemies:
+    - enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed,
+        type: 3}
+      weight: 60
+    - enemy: {fileID: 3784148227913888768, guid: 076336f9be38dc44c937235aa7a112cf,
+        type: 3}
+      weight: 0
 --- !u!4 &1430010352
 Transform:
   m_ObjectHideFlags: 0

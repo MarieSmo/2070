@@ -403,7 +403,7 @@ MonoBehaviour:
   - count: 2
     rate: 1
     enemies:
-    - enemy: {fileID: 841208005379407281, guid: c00a4c9abcaed35409805ac70653b39a,
+    - enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed,
         type: 3}
       weight: 100
 --- !u!4 &314864149

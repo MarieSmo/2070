@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-
     //Enums
 
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
@@ -52,9 +51,9 @@ public class SpawnEnemies : MonoBehaviour
     {
         if (state == SpawnState.WAITING)
         {
+            //Mark current wave as completed
             if (!EnemyIsAlive())
             {
-                //Begin a new round
                 WaveCompleted();
                 return;
             }
@@ -66,6 +65,7 @@ public class SpawnEnemies : MonoBehaviour
 
         if (waveCountDown <= 0)
         {
+            //Start a new wave if possible
             if (state != SpawnState.SPAWNING && nextWave != waves.Length)
             {
                 StartCoroutine(SpawnWave(waves[nextWave])); 
@@ -76,6 +76,8 @@ public class SpawnEnemies : MonoBehaviour
             waveCountDown -= Time.deltaTime;
         }
     }
+
+    //Checks if there are any enemies alive in the current level
 
     bool EnemyIsAlive()
     {
@@ -93,14 +95,53 @@ public class SpawnEnemies : MonoBehaviour
         return true;
     }
 
+    //Spawns a given enemy with randomized values
+
     void SpawnEnemy(Transform enemy)
     {
-        Debug.Log("Spawning Enemy: " + enemy.name);
+        //Instanciate enemy
+
         Transform sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(enemy, sp.position, sp.rotation);
+        Object enemyObject = Instantiate(enemy, sp.position, sp.rotation);
+        enemyObject.name = enemy.name + enemyObject.GetInstanceID().ToString();
+        GameObject enemyValues = GameObject.Find(enemyObject.name);
+
+        //Modify health and damage values by adding or substracting a random value
+
+        int randomHealth = 0;
+        int randomDamage = 0;
+
+        //Health
+
+        if(enemyValues.GetComponent<EnemyBehavior2D>().health >= 14)
+        {
+            randomHealth = Mathf.RoundToInt(Random.Range(-enemyValues.GetComponent<EnemyBehavior2D>().health / 5, enemyValues.GetComponent<EnemyBehavior2D>().health / 5));
+        }
+        else
+        {
+            randomHealth = Mathf.RoundToInt(Random.Range(-enemyValues.GetComponent<EnemyBehavior2D>().health / 3, (enemyValues.GetComponent<EnemyBehavior2D>().health / 3) + 1));
+        }
+
+        //Damage
+
+        if (enemyValues.GetComponent<EnemyBehavior2D>().health >= 7)
+        {
+            randomDamage = Mathf.RoundToInt(Random.Range(-enemyValues.GetComponent<EnemyBehavior2D>().damage / 3, enemyValues.GetComponent<EnemyBehavior2D>().damage / 3));
+        }
+        else
+        {
+            randomDamage = Mathf.RoundToInt(Random.Range(-enemyValues.GetComponent<EnemyBehavior2D>().damage / 2, (enemyValues.GetComponent<EnemyBehavior2D>().damage / 2) + 1));
+        }
+
+        //Modify enemy values
+
+        enemyValues.GetComponent<EnemyBehavior2D>().health += randomHealth;
+        enemyValues.GetComponent<EnemyBehavior2D>().damage += randomDamage;
     }
 
-    IEnumerator SpawnWave(Wave wave) //IEnumerator waits until executing again
+    //Initiates a wave and spawns enemies
+
+    IEnumerator SpawnWave(Wave wave) 
     {
         Debug.Log("Spawning wave " + nextWave);
         state = SpawnState.SPAWNING;
@@ -122,7 +163,8 @@ public class SpawnEnemies : MonoBehaviour
             int randomEnemy = Random.Range(0, wave.enemies.Length);
             if (randomWeight < wave.enemies[randomEnemy].weight)
             {
-                //Spawn enemy
+                //Spawns enemy
+
                 SpawnEnemy(wave.enemies[randomEnemy].enemy);
 
                 yield return new WaitForSeconds(wave.rate);
@@ -147,12 +189,14 @@ public class SpawnEnemies : MonoBehaviour
 
         state = SpawnState.WAITING;
 
-        yield break; //Because of IEnumerator
+        yield break;
     }
+
+    //Marks current wave as completed and sets the next wave's index
 
     void WaveCompleted()
     {
-        Debug.Log("Wave Completed!" + nextWave + " " + waves.Length);
+        Debug.Log("Wave Completed!");
 
         nextWave++;
         state = SpawnState.COUNTING;

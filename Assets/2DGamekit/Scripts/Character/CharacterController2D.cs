@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CharacterController2D : MonoBehaviour
@@ -131,7 +132,10 @@ public class CharacterController2D : MonoBehaviour
     }
 
     private void Die() {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        health = 100;
+        Scene activeScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(activeScene.name);
     }
 
     private void Flip()

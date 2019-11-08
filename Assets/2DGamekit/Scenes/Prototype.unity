@@ -5285,6 +5285,40 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1 &1812446684 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1030672202321082, guid: 06c5c56d99c9e194db056e41d8b8f99b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1610846410}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1812446688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812446684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66ea4a2980856b344b7f005ab141f425, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicAudioClip: {fileID: 8300000, guid: dce7178fe9ea2e247a96659bf3db256c, type: 3}
+  musicOutput: {fileID: 0}
+  musicPlayOnAwake: 1
+  musicVolume: 1
+  ambientAudioClip: {fileID: 0}
+  ambientOutput: {fileID: 0}
+  ambientPlayOnAwake: 1
+  ambientVolume: 1
+--- !u!81 &1812446689
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812446684}
+  m_Enabled: 1
 --- !u!1 &1920540076
 GameObject:
   m_ObjectHideFlags: 0

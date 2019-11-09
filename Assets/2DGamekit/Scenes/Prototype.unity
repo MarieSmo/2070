@@ -5476,6 +5476,12 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1380274184504213438, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0316d60868cb0c646a305506634ebba3,
+        type: 3}
     - target: {fileID: 1380274184504213432, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
       propertyPath: m_Offset.y

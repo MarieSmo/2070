@@ -40,7 +40,7 @@ public class CameraFollow : MonoBehaviour
     bool WaveCompleted()
     {
         bool waveIsCompleted = false;
-        if ()
+        if (waves[currentWave].GetComponent<SpawnEnemies>().nextWave >= waves[currentWave].GetComponent<SpawnEnemies>().waves.Length)
         {
             waveIsCompleted = true;
             if (currentWave < waves.Length)
@@ -70,7 +70,7 @@ public class CameraFollow : MonoBehaviour
                 attachCamera = false;
                 int enemyCounter = CountEnemiesInArea(waves[currentWave].position);
                 // if there are no enemies and the player is at the right of the camera
-                if (enemyCounter == 0 && transform.position.x <= Player.position.x)
+                if (WaveCompleted() && transform.position.x <= Player.position.x)
                 {
                     // the camera needs to move smoothly towards the player
                     cameraNeedSmooth = true;

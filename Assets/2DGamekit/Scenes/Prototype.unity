@@ -395,6 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ec20d24a383184bb19a3472242be3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextWave: 0
   timeBetweenWaves: 3
   state: 2
   spawnPoints:
@@ -533,6 +534,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 335679878}
+  - component: {fileID: 335679879}
+  - component: {fileID: 335679881}
+  - component: {fileID: 335679880}
   m_Layer: 13
   m_Name: Wave Point 2
   m_TagString: Untagged
@@ -554,6 +558,76 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &335679879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335679877}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ec20d24a383184bb19a3472242be3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextWave: 0
+  timeBetweenWaves: 5
+  state: 2
+  spawnPoints:
+  - {fileID: 1430010352}
+  - {fileID: 314864149}
+  waves:
+  - count: 1
+    rate: 5
+    enemies:
+    - enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed,
+        type: 3}
+      weight: 1
+    - enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed,
+        type: 3}
+      weight: 3
+    - enemy: {fileID: 3784148227913888768, guid: 076336f9be38dc44c937235aa7a112cf,
+        type: 3}
+      weight: 1
+--- !u!61 &335679880
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335679877}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2}
+  m_EdgeRadius: 0
+--- !u!114 &335679881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 335679877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d21fc088e65784a4e9a3479cbbbc5ad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveObject: {fileID: 335679877}
 --- !u!1 &398877942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1387,6 +1461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ec20d24a383184bb19a3472242be3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextWave: 0
   timeBetweenWaves: 3
   state: 2
   spawnPoints:
@@ -6312,6 +6387,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1955320763}
+  - component: {fileID: 1955320764}
   m_Layer: 13
   m_Name: Wave Point 1
   m_TagString: Untagged
@@ -6333,6 +6409,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1955320764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955320762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ec20d24a383184bb19a3472242be3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextWave: 0
+  timeBetweenWaves: 5
+  state: 2
+  spawnPoints:
+  - {fileID: 1430010352}
+  - {fileID: 314864149}
+  waves:
+  - count: 1
+    rate: 3
+    enemies:
+    - enemy: {fileID: 841208005379407281, guid: c00a4c9abcaed35409805ac70653b39a,
+        type: 3}
+      weight: 1
+    - enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed,
+        type: 3}
+      weight: 3
+    - enemy: {fileID: 1480037878246296840, guid: f8cf11c194cf58a4b87e4886329e36a4,
+        type: 3}
+      weight: 1
 --- !u!1001 &1380274185223840197
 PrefabInstance:
   m_ObjectHideFlags: 0

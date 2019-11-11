@@ -27,7 +27,7 @@ public class SpawnEnemies : MonoBehaviour
 
     //Attributes
 
-    private int nextWave = 0;
+    public int nextWave = 0;
     private float searchCountdown = 1.0f;
     public float timeBetweenWaves = 5.0f;
     private float waveCountDown = 0.0f;

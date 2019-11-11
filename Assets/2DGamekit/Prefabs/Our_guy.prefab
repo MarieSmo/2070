@@ -197,11 +197,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_JumpForce: 700
-  m_MovementSmoothing: 0.05
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 3222265623
+    m_Bits: 3222265111
   m_GroundCheck: {fileID: 1380274184765113687}
+  animator: {fileID: 0}
   health: 0
   whatIsEnnemy:
     serializedVersion: 2

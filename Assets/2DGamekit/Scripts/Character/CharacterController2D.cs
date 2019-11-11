@@ -67,8 +67,6 @@ public class CharacterController2D : MonoBehaviour
         if (timeBeforeAttck > 0) {
             timeBeforeAttck -= Time.fixedDeltaTime;
         }
-        animator.SetBool("punch", false);
-        animator.SetBool("kick", false);
     }
 
     public void Move(float move, bool jump) {
@@ -91,7 +89,7 @@ public class CharacterController2D : MonoBehaviour
         if (timeBeforeAttck <= 0)
         {
             timeBeforeAttck = attackRate;
-            if (punch) { 
+            if (punch) {
                 animator.SetBool("punch", true);
                 Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(punchPos.position, punchRange, whatIsEnnemy);
                 if (damageableEnemies.Length > 0) {

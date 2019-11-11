@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnEnemies : MonoBehaviour
 {
-
     //Enums
 
     public enum SpawnState { SPAWNING, WAITING, COUNTING };
@@ -12,22 +11,28 @@ public class SpawnEnemies : MonoBehaviour
     //Classes
 
     [System.Serializable]
+    public class Enemy
+    {
+        public Transform enemy;
+        public int weight;
+    }
+
+    [System.Serializable]
     public class Wave
     {
         public int count;
-        public Transform enemy;
-        public string name;
         public float rate;
+        public Enemy[] enemies;
     }
 
     //Attributes
 
-    private int nextWave = 0;
+    public int nextWave = 0;
     private float searchCountdown = 1.0f;
-    public Transform[] spawnPoints;
-    public SpawnState state = SpawnState.COUNTING;
     public float timeBetweenWaves = 5.0f;
     private float waveCountDown = 0.0f;
+    public SpawnState state = SpawnState.COUNTING;
+    public Transform[] spawnPoints;
     public Wave[] waves;
 
     //Methods
@@ -46,9 +51,9 @@ public class SpawnEnemies : MonoBehaviour
     {
         if (state == SpawnState.WAITING)
         {
+            //Mark current wave as completed
             if (!EnemyIsAlive())
             {
-                //Begin a new round
                 WaveCompleted();
                 return;
             }
@@ -60,9 +65,10 @@ public class SpawnEnemies : MonoBehaviour
 
         if (waveCountDown <= 0)
         {
-            if (state != SpawnState.SPAWNING)
+            //Start a new wave if possible
+            if (state != SpawnState.SPAWNING && nextWave != waves.Length)
             {
-                StartCoroutine(SpawnWave(waves[nextWave])); //IEnumerator -> StartCoroutine
+                StartCoroutine(SpawnWave(waves[nextWave])); 
             }
         }
         else
@@ -71,23 +77,7 @@ public class SpawnEnemies : MonoBehaviour
         }
     }
 
-    void WaveCompleted()
-    {
-        Debug.Log("Wave Completed!" + nextWave + " " + waves.Length);
-
-        state = SpawnState.COUNTING;
-        waveCountDown = timeBetweenWaves;
-
-        if (nextWave + 1 > waves.Length - 1)
-        {
-            nextWave = 0;
-            Debug.Log("All waves complete");
-        }
-        else
-        {
-            nextWave++;
-        }
-    }
+    //Checks if there are any enemies alive in the current level
 
     bool EnemyIsAlive()
     {
@@ -105,28 +95,117 @@ public class SpawnEnemies : MonoBehaviour
         return true;
     }
 
-    IEnumerator SpawnWave(Wave wave) //IEnumerator waits until executing again
+    //Spawns a given enemy with randomized values
+
+    void SpawnEnemy(Transform enemy)
     {
-        Debug.Log("Spawning wave" + wave.name);
+        //Instanciate enemy
+
+        Transform sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Object enemyObject = Instantiate(enemy, sp.position, sp.rotation);
+        enemyObject.name = enemy.name + enemyObject.GetInstanceID().ToString();
+        GameObject enemyValues = GameObject.Find(enemyObject.name);
+
+        //Modify health and damage values by adding or substracting a random value
+
+        int randomHealth = 0;
+        int randomDamage = 0;
+
+        //Health
+
+        if(enemyValues.GetComponent<EnemyBehavior2D>().health >= 14)
+        {
+            randomHealth = Mathf.RoundToInt(Random.Range(-enemyValues.GetComponent<EnemyBehavior2D>().health / 5, enemyValues.GetComponent<EnemyBehavior2D>().health / 5));
+        }
+        else
+        {
+            randomHealth = Mathf.RoundToInt(Random.Range(-enemyValues.GetComponent<EnemyBehavior2D>().health / 3, (enemyValues.GetComponent<EnemyBehavior2D>().health / 3) + 1));
+        }
+
+        //Damage
+
+        if (enemyValues.GetComponent<EnemyBehavior2D>().health >= 7)
+        {
+            randomDamage = Mathf.RoundToInt(Random.Range(-enemyValues.GetComponent<EnemyBehavior2D>().damage / 3, enemyValues.GetComponent<EnemyBehavior2D>().damage / 3));
+        }
+        else
+        {
+            randomDamage = Mathf.RoundToInt(Random.Range(-enemyValues.GetComponent<EnemyBehavior2D>().damage / 2, (enemyValues.GetComponent<EnemyBehavior2D>().damage / 2) + 1));
+        }
+
+        //Modify enemy values
+
+        enemyValues.GetComponent<EnemyBehavior2D>().health += randomHealth;
+        enemyValues.GetComponent<EnemyBehavior2D>().damage += randomDamage;
+    }
+
+    //Initiates a wave and spawns enemies
+
+    IEnumerator SpawnWave(Wave wave) 
+    {
+        Debug.Log("Spawning wave " + nextWave);
         state = SpawnState.SPAWNING;
 
-        for (int i = 0; i < wave.count; i++)
+        //Spawn a random enemy 
+
+        int totalWeight = 0;
+
+        for (int i = 0; i < wave.enemies.Length; i++)
         {
-            SpawnEnemy(wave.enemy);
-            yield return new WaitForSeconds(1.0f / wave.rate);
+            if(wave.enemies[i].weight > 0)
+                totalWeight += wave.enemies[i].weight;
+        }
+
+        int count = 0;
+        while (count < wave.count)
+        {
+            int randomWeight = Random.Range(0, totalWeight);
+            int randomEnemy = Random.Range(0, wave.enemies.Length);
+            if (randomWeight < wave.enemies[randomEnemy].weight)
+            {
+                //Spawns enemy
+
+                SpawnEnemy(wave.enemies[randomEnemy].enemy);
+
+                yield return new WaitForSeconds(wave.rate);
+
+                //Modify weight values
+
+                wave.enemies[randomEnemy].weight -= 30 / wave.enemies.Length;
+
+                for (int j = 0; j < wave.enemies.Length; j++)
+                {
+                    if (randomEnemy != j)
+                    {
+                        wave.enemies[j].weight += 30 / wave.enemies.Length;
+                    }
+                }
+
+                //Enemy has spawned, count increases
+                
+                count++;
+            }
         }
 
         state = SpawnState.WAITING;
 
-        yield break; //Because of IEnumerator
+        yield break;
     }
 
-    void SpawnEnemy(Transform enemy)
+    //Marks current wave as completed and sets the next wave's index
+
+    public void WaveCompleted()
     {
-        Debug.Log("Spawning Enemy: " + enemy.name);
-        Transform sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate(enemy, sp.position, sp.rotation);
-    }
+        Debug.Log("Wave Completed!");
 
+        nextWave++;
+        state = SpawnState.COUNTING;
+        waveCountDown = timeBetweenWaves;
+
+        if (nextWave >= waves.Length)
+        {
+            Debug.Log("All waves complete");
+        }
+    }
 
 }

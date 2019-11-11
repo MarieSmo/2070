@@ -194,7 +194,7 @@ public class SpawnEnemies : MonoBehaviour
 
     //Marks current wave as completed and sets the next wave's index
 
-    void WaveCompleted()
+    public void WaveCompleted()
     {
         Debug.Log("Wave Completed!");
 

@@ -25,6 +25,8 @@ public class EnemyBehavior2D : MonoBehaviour
     public float health = 15f;
     public float damage = 10f;
     public float velocity;
+	[Range(0, 1f)] public float meat_spawn_prob;
+	public float meat_value;
 
     public GameObject player;
 
@@ -123,6 +125,11 @@ public class EnemyBehavior2D : MonoBehaviour
 
     private void Die()
     {
+		if (new System.Random().NextDouble() <= meat_spawn_prob) {
+			player.GetComponent<CharacterController2D>().Heal(meat_value);
+			print(player.GetComponent<CharacterController2D>().health);
+		}
+		
         Destroy(gameObject);
     }
 

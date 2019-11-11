@@ -45,4 +45,8 @@ public class OurGuyMovement : MonoBehaviour
         }
         
     }
+	
+	public void OnLanding(){
+		animator.SetBool("jump", false);
+	}
 }

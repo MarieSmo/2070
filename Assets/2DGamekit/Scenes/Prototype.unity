@@ -1163,6 +1163,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1380274185223840197}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &844832235 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1380274184504213434, guid: 8bc7396137669b64593d1fdb69bc796e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1380274185223840197}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844832234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229e5df0bf7ba9746b745ce9441cbf62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &844832240
 Animator:
   serializedVersion: 3
@@ -1173,10 +1185,10 @@ Animator:
   m_GameObject: {fileID: 844832234}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 88ee49fdf1a57574e8dcd6224272d1c1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3b880407b727881449d8ccd8b666405e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -6470,7 +6482,7 @@ PrefabInstance:
     - target: {fileID: 1380274184504213439, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.03
+      value: 1.07
       objectReference: {fileID: 0}
     - target: {fileID: 1380274184504213439, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
@@ -6504,6 +6516,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1380274184504213435, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380274184504213435, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -6516,6 +6533,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_JumpForce
       value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380274184504213435, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380274184504213435, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380274184504213435, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 844832235}
+    - target: {fileID: 1380274184504213435, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnLanding
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380274184504213435, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 1380274184504213434, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
@@ -6535,7 +6577,7 @@ PrefabInstance:
     - target: {fileID: 1380274184504213438, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
       propertyPath: m_FlipX
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1380274184504213438, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
@@ -6546,12 +6588,12 @@ PrefabInstance:
     - target: {fileID: 1380274184504213432, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
       propertyPath: m_Offset.y
-      value: -0.43089557
+      value: -0.067388296
       objectReference: {fileID: 0}
     - target: {fileID: 1380274184504213432, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
       propertyPath: m_Size.y
-      value: 6.2055883
+      value: 1.6462536
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bc7396137669b64593d1fdb69bc796e, type: 3}

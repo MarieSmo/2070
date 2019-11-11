@@ -32,15 +32,30 @@ public class CharacterController2D : MonoBehaviour
     public float kickRange;
     public float punchDamage;
     public float kickDamage;
+	public float envDamage;
+	
+	[Header("Events")]
+	[Space]
+
+	public UnityEvent OnLandEvent;
+
+	[System.Serializable]
+	public class BoolEvent : UnityEvent<bool> { }
 
 
     private void Awake() {
         healthUI = GameObject.Find("HealthNumber");
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		
+		if (OnLandEvent == null)
+			OnLandEvent = new UnityEvent();
+		
+		animator.SetBool("dead", false);
 
         attackRate = 0.7f;
         timeBeforeAttck = 0f;
 
+		envDamage = 1;
         punchDamage = 12f;
         kickDamage = 7f;
         kickRange = 2 * punchRange;
@@ -52,8 +67,10 @@ public class CharacterController2D : MonoBehaviour
         if (health <= 0) {
             Die();
         }
+		health -= envDamage * Time.fixedDeltaTime;
         HealthUI();
 
+		bool wasGrounded = m_Grounded;
         m_Grounded = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
@@ -61,6 +78,8 @@ public class CharacterController2D : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 m_Grounded = true;
+				if (!wasGrounded)
+					OnLandEvent.Invoke();
                 break;
             }
         }
@@ -74,6 +93,7 @@ public class CharacterController2D : MonoBehaviour
         if (m_Grounded && jump)
         {
             m_Grounded = false;
+			animator.SetBool("jump", true);
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
 
@@ -122,15 +142,22 @@ public class CharacterController2D : MonoBehaviour
         health -= damage;
         HealthUI();
     }
+	
+	public void Heal(float gained_health)
+    {
+        health += gained_health;
+        HealthUI();
+    }
 
     // Modify health UI
     void HealthUI() {
-        if (health >= 0) healthUI.GetComponent<Text>().text = health.ToString();
+        if (health >= 0) healthUI.GetComponent<Text>().text = Math.Floor(health).ToString();
         else healthUI.GetComponent<Text>().text = "YOU DIED";
     }
 
     private void Die() {
         //Destroy(gameObject);
+		animator.SetBool("dead", true);
         health = 100;
         Scene activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(activeScene.name);

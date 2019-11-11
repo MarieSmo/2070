@@ -157,6 +157,8 @@ MonoBehaviour:
   health: 20
   damage: 15
   velocity: 2.5
+  meat_spawn_prob: 0.95
+  meat_value: 15
   player: {fileID: 0}
 --- !u!1 &3784148227947830480
 GameObject:

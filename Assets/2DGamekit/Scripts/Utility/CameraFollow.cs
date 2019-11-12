@@ -70,16 +70,15 @@ public class CameraFollow : MonoBehaviour
                 attachCamera = false;
                 int enemyCounter = CountEnemiesInArea(waves[currentWave].position);
                 // if there are no enemies and the player is at the right of the camera
-                if (WaveCompleted() && transform.position.x <= Player.position.x)
+                if (WaveCompleted())
                 {
-                    // the camera needs to move smoothly towards the player
-                    cameraNeedSmooth = true;
                     attachCamera = true;
-                    //disable camera collision
-                }
-                else
-                {
-                    // enable camera collision
+                    if (transform.position.x <= Player.position.x)
+                    {
+                        // the camera needs to move smoothly towards the player
+                        cameraNeedSmooth = true;
+                        smoothCompleted = false;
+                    }
                 }
             }
         }

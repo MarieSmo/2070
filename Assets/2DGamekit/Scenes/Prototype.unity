@@ -6474,6 +6474,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1380274184504213434, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 844832240}
     - target: {fileID: 1380274184504213439, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6559,11 +6564,6 @@ PrefabInstance:
       propertyPath: OnLandEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 1380274184504213434, guid: 8bc7396137669b64593d1fdb69bc796e,
-        type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 844832240}
     - target: {fileID: 1380274184504213438, guid: 8bc7396137669b64593d1fdb69bc796e,
         type: 3}
       propertyPath: m_Enabled

@@ -22,6 +22,7 @@ public class CharacterController2D : MonoBehaviour
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
     public float health;
+    private float healthIni;
 
     public LayerMask whatIsEnnemy;
     private float timeBeforeAttck;
@@ -42,7 +43,6 @@ public class CharacterController2D : MonoBehaviour
 	[System.Serializable]
 	public class BoolEvent : UnityEvent<bool> { }
 
-
     private void Awake() {
         healthUI = GameObject.Find("HealthNumber");
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -60,17 +60,18 @@ public class CharacterController2D : MonoBehaviour
         kickDamage = 7f;
         kickRange = 2 * punchRange;
         health = 100f;
-}
+    }
 
     private void FixedUpdate()
     {
-        if (health <= 0) {
-            Die();
+        if (health <= 0)
+        {
+            StartCoroutine(Die());
         }
-		health -= envDamage * Time.fixedDeltaTime;
+        health -= envDamage * Time.fixedDeltaTime;
         HealthUI();
 
-		bool wasGrounded = m_Grounded;
+        bool wasGrounded = m_Grounded;
         m_Grounded = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
@@ -78,32 +79,29 @@ public class CharacterController2D : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
             {
                 m_Grounded = true;
-				if (!wasGrounded)
-					OnLandEvent.Invoke();
+                if (!wasGrounded)
+                    OnLandEvent.Invoke();
                 break;
             }
         }
 
-        if (timeBeforeAttck > 0) {
+        if (timeBeforeAttck > 0)
+        {
             timeBeforeAttck -= Time.fixedDeltaTime;
         }
     }
 
-    public void Move(float move, bool jump) {
-        if (m_Grounded && jump)
-        {
-            m_Grounded = false;
-			animator.SetBool("jump", true);
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-        }
+    //Displays some visual infos, for example a circle showing the range
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        //Gizmos.DrawWireSphere(punchPos.position, punchRange);
+        //Gizmos.DrawWireSphere(kickPos.position, kickRange);
+    }
 
-        m_Rigidbody2D.velocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
-        if (move > 0 && !m_FacingRight) {
-            Flip();
-        }
-        else if (move < 0 && m_FacingRight) {
-            Flip();
-        }
+    private void Start()
+    {
+        healthIni = health;
     }
 
     public void Attack(bool punch, bool kick) {
@@ -130,35 +128,18 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    //Displays some visual infos, for example a circle showing the range
-    void OnDrawGizmos() {
-        Gizmos.color = Color.red;
-        //Gizmos.DrawWireSphere(punchPos.position, punchRange);
-        //Gizmos.DrawWireSphere(kickPos.position, kickRange);
-    }
-
     public void Damage(float damage)
     {
         health -= damage;
         HealthUI();
     }
-	
-	public void Heal(float gained_health)
+
+    private IEnumerator Die()
     {
-        health += gained_health;
-        HealthUI();
-    }
-
-    // Modify health UI
-    void HealthUI() {
-        if (health >= 0) healthUI.GetComponent<Text>().text = Math.Floor(health).ToString();
-        else healthUI.GetComponent<Text>().text = "YOU DIED";
-    }
-
-    private void Die() {
         //Destroy(gameObject);
-		animator.SetBool("dead", true);
-        health = 100;
+        animator.SetBool("dead", true);
+        yield return new WaitForSeconds(3);
+        health = healthIni;
         Scene activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(activeScene.name);
     }
@@ -172,4 +153,35 @@ public class CharacterController2D : MonoBehaviour
         transform.localScale = theScale;
     }
 
+    public void Heal(float gained_health)
+    {
+        health += gained_health;
+        HealthUI();
+    }
+
+    // Modify health UI
+    void HealthUI() {
+        if (health >= 0) healthUI.GetComponent<Text>().text = Math.Floor(health).ToString();
+        else healthUI.GetComponent<Text>().text = "YOU DIED";
+    }
+
+    public void Move(float move, bool jump)
+    {
+        if (m_Grounded && jump)
+        {
+            m_Grounded = false;
+            animator.SetBool("jump", true);
+            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+        }
+
+        m_Rigidbody2D.velocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+        if (move > 0 && !m_FacingRight)
+        {
+            Flip();
+        }
+        else if (move < 0 && m_FacingRight)
+        {
+            Flip();
+        }
+    }
 }

@@ -20,6 +20,7 @@ public class CharacterController2D : MonoBehaviour
     public Animator animator;
 
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+    private bool m_JumpFinished = true; // For determining whether the player is still jumping or not
     private Vector3 m_Velocity = Vector3.zero;
     public float health;
     private float healthIni;
@@ -162,6 +163,12 @@ public class CharacterController2D : MonoBehaviour
     public void Heal(float gained_health)
     {
         health += gained_health;
+
+        if (health > 100)
+        {
+            health = 100;
+        }
+
         HealthUI();
     }
     
@@ -176,18 +183,26 @@ public class CharacterController2D : MonoBehaviour
         HealthUI();
     }
 
-    private void Jump()
+    private IEnumerator Jump()
     {
+        m_JumpFinished = false;
+        animator.SetBool("jump", false);
         m_Grounded = false;
         //m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         animator.SetBool("jump", true);
+        yield return new WaitForSeconds(1);
+        m_JumpFinished = true;
     }
 
     public void Move(float move, bool jump)
     {
-        if (m_Grounded && jump)
+        if (m_Grounded && jump && m_JumpFinished)
         {
-            Jump();
+            StartCoroutine(Jump());
+        }
+        else
+        {
+            animator.SetBool("jump", false);
         }
 
         m_Rigidbody2D.velocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);

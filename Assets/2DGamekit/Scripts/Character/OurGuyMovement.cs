@@ -39,7 +39,6 @@ public class OurGuyMovement : MonoBehaviour
     //We wanna get the Inputs in here
     void Update()
     {
-        print(animator.GetBool("jump"));
         horizontalMove = Input.GetAxis("Horizontal") * runSpeed * Time.fixedDeltaTime;
         animator.SetFloat("speed", Mathf.Abs(horizontalMove));
         
@@ -50,6 +49,5 @@ public class OurGuyMovement : MonoBehaviour
 	
 	public void OnLanding(){
         jumpMove = 0;
-		animator.SetBool("jump", false);
 	}
 }

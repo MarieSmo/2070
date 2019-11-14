@@ -71,6 +71,9 @@ public class CharacterController2D : MonoBehaviour
         //Hurt character
         Hurt(1, 2);
 
+        //Win management
+        Win();
+
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
@@ -137,6 +140,7 @@ public class CharacterController2D : MonoBehaviour
 
     private IEnumerator Die()
     {
+        Move(0,false);
         this.GetComponent<OurGuyMovement>().enabled = false;
         yield return new WaitForSeconds(0.1f);
         animator.SetBool("dead", true);
@@ -194,6 +198,16 @@ public class CharacterController2D : MonoBehaviour
         else if (move < 0 && m_FacingRight)
         {
             Flip();
+        }
+    }
+
+    public void Win()
+    {
+        if (GameObject.Find("Our_guy").transform.position.x > GameObject.Find("LevelEnd").transform.position.x) {
+            this.GetComponent<OurGuyMovement>().enabled = false;
+            health = healthIni;
+            Scene activeScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(activeScene.name);
         }
     }
 }

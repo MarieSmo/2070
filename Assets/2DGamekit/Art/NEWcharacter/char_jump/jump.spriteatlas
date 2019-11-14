@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: jump
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 42af6a71f37454946947d3b2870315ea, type: 3}
+    - {fileID: 2800000, guid: f69ddbefec314b14f80417253e91de0b, type: 3}
+    - {fileID: 2800000, guid: e99aad5a2e5a5c94d9f4804a3cabca1d, type: 3}
+    - {fileID: 2800000, guid: ea50a127da8c94143b98e547be1831ca, type: 3}
+    - {fileID: 2800000, guid: b65982f1da033f24eb6e81b6da1e25f4, type: 3}
+    - {fileID: 2800000, guid: a39148f4ce854a149a179d07c06d9e55, type: 3}
+    - {fileID: 2800000, guid: eff93cd2a2eb7444c9a6683a9119f51c, type: 3}
+    - {fileID: 2800000, guid: ef9c7849a54c9eb49834286e9e768e69, type: 3}
+    - {fileID: 2800000, guid: dfec7dd65e65c8c4baedffb22818311e, type: 3}
+    - {fileID: 2800000, guid: 7178f18c0883cd541a28aa10bce5f75f, type: 3}
+    totalSpriteSurfaceArea: 428000
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 42af6a71f37454946947d3b2870315ea, type: 3}
+  - {fileID: 21300000, guid: b65982f1da033f24eb6e81b6da1e25f4, type: 3}
+  - {fileID: 21300000, guid: eff93cd2a2eb7444c9a6683a9119f51c, type: 3}
+  - {fileID: 21300000, guid: a39148f4ce854a149a179d07c06d9e55, type: 3}
+  - {fileID: 21300000, guid: dfec7dd65e65c8c4baedffb22818311e, type: 3}
+  - {fileID: 21300000, guid: ea50a127da8c94143b98e547be1831ca, type: 3}
+  - {fileID: 21300000, guid: ef9c7849a54c9eb49834286e9e768e69, type: 3}
+  - {fileID: 21300000, guid: e99aad5a2e5a5c94d9f4804a3cabca1d, type: 3}
+  - {fileID: 21300000, guid: 7178f18c0883cd541a28aa10bce5f75f, type: 3}
+  - {fileID: 21300000, guid: f69ddbefec314b14f80417253e91de0b, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - jump1
+  - jump5
+  - jump7
+  - jump6
+  - jump9
+  - jump4
+  - jump8
+  - jump3
+  - jump10
+  - jump2
+  m_Tag: jump
+  m_IsVariant: 0

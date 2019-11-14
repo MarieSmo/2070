@@ -64,12 +64,12 @@ public class CharacterController2D : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (health <= 0)
-        {
+        //Die animation
+        if (health < 1)
             StartCoroutine(Die());
-        }
-        health -= envDamage * Time.fixedDeltaTime;
-        HealthUI();
+
+        //Hurt character
+        Hurt(1, 2);
 
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
@@ -102,6 +102,7 @@ public class CharacterController2D : MonoBehaviour
     private void Start()
     {
         healthIni = health;
+        health += 1;
     }
 
     public void Attack(bool punch, bool kick) {
@@ -136,7 +137,8 @@ public class CharacterController2D : MonoBehaviour
 
     private IEnumerator Die()
     {
-        //Destroy(gameObject);
+        this.GetComponent<OurGuyMovement>().enabled = false;
+        yield return new WaitForSeconds(0.1f);
         animator.SetBool("dead", true);
         yield return new WaitForSeconds(3);
         health = healthIni;
@@ -158,20 +160,30 @@ public class CharacterController2D : MonoBehaviour
         health += gained_health;
         HealthUI();
     }
-
-    // Modify health UI
+    
     void HealthUI() {
         if (health >= 0) healthUI.GetComponent<Text>().text = Math.Floor(health).ToString();
         else healthUI.GetComponent<Text>().text = "YOU DIED";
+    }
+
+    private void Hurt(float lost_health, float rate)
+    {
+        health -= lost_health * Time.fixedDeltaTime / rate;
+        HealthUI();
+    }
+
+    private void Jump()
+    {
+        m_Grounded = false;
+        //m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+        animator.SetBool("jump", true);
     }
 
     public void Move(float move, bool jump)
     {
         if (m_Grounded && jump)
         {
-            m_Grounded = false;
-            animator.SetBool("jump", true);
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            Jump();
         }
 
         m_Rigidbody2D.velocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);

@@ -20,18 +20,6 @@ public class OurGuyMovement : MonoBehaviour
         fistAttack = false;
         kickAttack = false;
         runSpeed = 40.0f;
-}
-
-    // Update is called once per frame
-    //We wanna get the Inputs in here
-    void Update()
-    {
-        horizontalMove = Input.GetAxis("Horizontal") * runSpeed * Time.fixedDeltaTime;
-        animator.SetFloat("speed", Mathf.Abs(horizontalMove));
-
-        jumpMove = Input.GetAxis("Jump");
-        fistAttack = Input.GetButtonDown("Punch");
-        kickAttack = Input.GetButtonDown("Kick");
     }
 
     //And make our player move here
@@ -40,13 +28,28 @@ public class OurGuyMovement : MonoBehaviour
         bool jump = jumpMove > 0 ? true : false;
 
         controller.Move(horizontalMove, jump);
-        if (fistAttack || kickAttack) {
+        if (fistAttack || kickAttack)
+        {
             controller.Attack(fistAttack, kickAttack);
         }
+
+    }
+
+    // Update is called once per frame
+    //We wanna get the Inputs in here
+    void Update()
+    {
+        print(animator.GetBool("jump"));
+        horizontalMove = Input.GetAxis("Horizontal") * runSpeed * Time.fixedDeltaTime;
+        animator.SetFloat("speed", Mathf.Abs(horizontalMove));
         
+        jumpMove = Input.GetAxis("Jump");
+        fistAttack = Input.GetButtonDown("Punch");
+        kickAttack = Input.GetButtonDown("Kick");
     }
 	
 	public void OnLanding(){
+        jumpMove = 0;
 		animator.SetBool("jump", false);
 	}
 }

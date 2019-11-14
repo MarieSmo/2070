@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: kick
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: c30a09965b306104f993e097f80f95a1, type: 3}
+    - {fileID: 2800000, guid: 072df07eb07184744bfd09416c44fb59, type: 3}
+    - {fileID: 2800000, guid: 4bbcae11e02569340b16b429a12be2c5, type: 3}
+    - {fileID: 2800000, guid: 42faf8d0b0468df45ad6fcb7c14d8256, type: 3}
+    - {fileID: 2800000, guid: 5f5a711b539886641923eb4379389fb5, type: 3}
+    - {fileID: 2800000, guid: 6d4461c9a0fe28c4bbf6e81970dfd418, type: 3}
+    - {fileID: 2800000, guid: a29e9b29de41d1545ae76e821512a07f, type: 3}
+    - {fileID: 2800000, guid: 20f6383837f578a489b682723f26271c, type: 3}
+    - {fileID: 2800000, guid: 8c933260f1145f44680726ec5d3bf608, type: 3}
+    - {fileID: 2800000, guid: 45aad68d538259540a12cf8552a4ca25, type: 3}
+    - {fileID: 2800000, guid: 7fa6911a55f397b4593ce93ef788d477, type: 3}
+    - {fileID: 2800000, guid: 4cf6630cfcfacc8478b9a88f8a61bb5a, type: 3}
+    - {fileID: 2800000, guid: a1771ff2c5bcb2a449138c4711775563, type: 3}
+    - {fileID: 2800000, guid: bfcf2487a8b135846a10c38de46a134e, type: 3}
+    totalSpriteSurfaceArea: 560000
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 8c933260f1145f44680726ec5d3bf608, type: 3}
+  - {fileID: 21300000, guid: 42faf8d0b0468df45ad6fcb7c14d8256, type: 3}
+  - {fileID: 21300000, guid: 4bbcae11e02569340b16b429a12be2c5, type: 3}
+  - {fileID: 21300000, guid: a1771ff2c5bcb2a449138c4711775563, type: 3}
+  - {fileID: 21300000, guid: c30a09965b306104f993e097f80f95a1, type: 3}
+  - {fileID: 21300000, guid: bfcf2487a8b135846a10c38de46a134e, type: 3}
+  - {fileID: 21300000, guid: 20f6383837f578a489b682723f26271c, type: 3}
+  - {fileID: 21300000, guid: a29e9b29de41d1545ae76e821512a07f, type: 3}
+  - {fileID: 21300000, guid: 6d4461c9a0fe28c4bbf6e81970dfd418, type: 3}
+  - {fileID: 21300000, guid: 7fa6911a55f397b4593ce93ef788d477, type: 3}
+  - {fileID: 21300000, guid: 5f5a711b539886641923eb4379389fb5, type: 3}
+  - {fileID: 21300000, guid: 4cf6630cfcfacc8478b9a88f8a61bb5a, type: 3}
+  - {fileID: 21300000, guid: 45aad68d538259540a12cf8552a4ca25, type: 3}
+  - {fileID: 21300000, guid: 072df07eb07184744bfd09416c44fb59, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - kick9
+  - kick4
+  - kick3
+  - kick13
+  - kick1
+  - kick14
+  - kick8
+  - kick7
+  - kick6
+  - kick11
+  - kick5
+  - kick12
+  - kick10
+  - kick2
+  m_Tag: kick
+  m_IsVariant: 0

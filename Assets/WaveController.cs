@@ -36,13 +36,25 @@ public class WaveController : MonoBehaviour
 
     }
 
+    public bool levelEnded()
+    {
+        if (finalWave && completed)
+            return true;
+        else
+            return false;
+    }
+
     public void setCompleted(bool val)
     {
         print(this.name);
         completed = val;
-        if(val==true && finalWave)
+        if(val==true)
         {
-            spawnRight.SetActive(false);
+            GameObject.Find("MainCamera").GetComponent<SpawnController>().setInWave(false);
+            if(finalWave)
+            {
+                spawnRight.SetActive(false);
+            }
         }
     }
 

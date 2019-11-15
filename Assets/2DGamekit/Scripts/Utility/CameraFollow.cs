@@ -40,7 +40,7 @@ public class CameraFollow : MonoBehaviour
     bool WaveCompleted()
     {
         bool waveIsCompleted = false;
-        if (waves[currentWave].GetComponent<SpawnEnemies>().nextWave >= waves[currentWave].GetComponent<SpawnEnemies>().waves.Length)
+        if (currentWave < waves.Length && waves[currentWave].GetComponent<SpawnEnemies>().nextWave >= waves[currentWave].GetComponent<SpawnEnemies>().waves.Length)
         {
             waveIsCompleted = true;
             Debug.Log("Wave completed: " + currentWave);
@@ -57,14 +57,14 @@ public class CameraFollow : MonoBehaviour
         {
             attachCamera = false;
         }
-        else if (Player != null && Player.position.x <= endPositionOfCamera.position.x)
+        else if (currentWave < waves.Length && Player != null && Player.position.x <= endPositionOfCamera.position.x && !waves[currentWave].GetComponent<WaveController>().levelEnded())
         {
             float halfHeight = camera.orthographicSize;
             float halfWidth = camera.aspect * halfHeight;
             // area between the initial position of the camera and the end of the wave
             attachCamera = true;
             // area between the middle of the wave and the limit of it (this need a fix)
-            if (Player != null && Player.position.x >= waves[currentWave].position.x && Player.position.x <= waves[currentWave].position.x + halfWidth/2) // change this 10 for an object or whatever thing to state the limit of the screen
+            if (currentWave < waves.Length && Player != null && Player.position.x >= waves[currentWave].position.x && Player.position.x <= waves[currentWave].position.x + halfWidth/2) // change this 10 for an object or whatever thing to state the limit of the screen
             {
                 attachCamera = false;
                 int enemyCounter = CountEnemiesInArea(waves[currentWave].position);

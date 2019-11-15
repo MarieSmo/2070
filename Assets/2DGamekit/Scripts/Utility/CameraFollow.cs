@@ -43,6 +43,7 @@ public class CameraFollow : MonoBehaviour
         if (waves[currentWave].GetComponent<SpawnEnemies>().nextWave >= waves[currentWave].GetComponent<SpawnEnemies>().waves.Length)
         {
             waveIsCompleted = true;
+            Debug.Log("Wave completed: " + currentWave);
         }
         return waveIsCompleted;
     }

@@ -29,7 +29,7 @@ public class SpawnEnemies : MonoBehaviour
 
     public int nextWave = 0;
     private float searchCountdown = 1.0f;
-    public float timeBetweenWaves = 5.0f;
+    public float timeBetweenWaves = 2.0f;
     private float waveCountDown = 0.0f;
     public SpawnState state = SpawnState.COUNTING;
     public Transform[] spawnPoints;

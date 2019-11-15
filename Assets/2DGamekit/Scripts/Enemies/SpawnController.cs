@@ -14,6 +14,7 @@ public class SpawnController : MonoBehaviour
     public Transform levelEnd;
     public Transform Player;
     public float SpawnDistance = 20f;
+    private bool inWave = false;
 
     private void Start()
     {
@@ -50,7 +51,7 @@ public class SpawnController : MonoBehaviour
     private void checkSpawn()
     {
 
-        if(spawnLeft.transform.position.x <= levelIni.position.x)
+        if(spawnLeft.transform.position.x <= levelIni.position.x || inWave)
         {
             spawnLeft.GetComponent<SpawnEnemies>().enabled = false;
         }
@@ -59,7 +60,7 @@ public class SpawnController : MonoBehaviour
             spawnLeft.GetComponent<SpawnEnemies>().enabled = true;
         }
 
-        if (spawnRight.transform.position.x >= levelEnd.position.x)
+        if (spawnRight.transform.position.x >= levelEnd.position.x || inWave)
         {
             spawnRight.GetComponent<SpawnEnemies>().enabled = false;
         }
@@ -75,5 +76,11 @@ public class SpawnController : MonoBehaviour
     {
         transformSpawnLeft.transform.position = new Vector3(camera.gameObject.transform.position.x - SpawnDistance, 2, 0);
         transformSpawnRight.transform.position = new Vector3(camera.gameObject.transform.position.x + SpawnDistance, 2, 0);
+    }
+
+    //Sets inWave value, if true spawns are disabled
+    public void setInWave(bool val)
+    {
+        inWave = val;
     }
 }

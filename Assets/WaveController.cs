@@ -4,11 +4,46 @@ using UnityEngine;
 
 public class WaveController : MonoBehaviour
 {
+    private GameObject character;
+    private GameObject spawnLeft;
+    private GameObject spawnRight;
     public GameObject waveObject;
 
-    private void OnTriggerEnter2D(Collider2D waveObject)
+    private bool completed = false;
+    public bool finalWave = false;
+
+    public void Start()
     {
-        print("Ha entrado!!!!!!!!!!!!!!");
-        waveObject.GetComponent<SpawnEnemies>().enabled = true;
+        spawnLeft = GameObject.Find("SpawnLeft");
+        spawnRight = GameObject.Find("SpawnRight");
+        character = GameObject.Find("Our_guy");
+}
+
+    public void Update()
+    {
+        //Disable spawns and enable wave
+        if (waveObject.transform.position.x <= character.transform.position.x && !completed)
+        {
+            GameObject.Find("MainCamera").GetComponent<SpawnController>().setInWave(true);
+            waveObject.GetComponent<SpawnEnemies>().enabled = true;
+        }
+
+        //If wave is completed enable spawns unless it is the final wave
+        if(completed && finalWave)
+        {
+            GameObject.Find("MainCamera").GetComponent<SpawnController>().setInWave(true);
+        }
+
     }
+
+    public void setCompleted(bool val)
+    {
+        print(this.name);
+        completed = val;
+        if(val==true && finalWave)
+        {
+            spawnRight.SetActive(false);
+        }
+    }
+
 }

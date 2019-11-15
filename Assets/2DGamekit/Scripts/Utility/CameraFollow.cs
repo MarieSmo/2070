@@ -43,8 +43,6 @@ public class CameraFollow : MonoBehaviour
         if (waves[currentWave].GetComponent<SpawnEnemies>().nextWave >= waves[currentWave].GetComponent<SpawnEnemies>().waves.Length)
         {
             waveIsCompleted = true;
-            if (currentWave < waves.Length)
-                currentWave++;
         }
         return waveIsCompleted;
     }
@@ -79,12 +77,23 @@ public class CameraFollow : MonoBehaviour
                         cameraNeedSmooth = true;
                         smoothCompleted = false;
                     }
+
+                    //If wave is completed set it on the WaveController script
+                    GameObject.Find(waves[currentWave].name).GetComponent<WaveController>().setCompleted(true);
+                    currentWave++;
                 }
             }
         }
         else
         {
             attachCamera = false;
+
+            // if there are no enemies and the player is at the right of the camera
+            if (WaveCompleted())
+            {
+                //If wave is completed set it on the WaveController script
+                GameObject.Find(waves[currentWave].name).GetComponent<WaveController>().setCompleted(true);
+            }
         }
 
         return attachCamera;

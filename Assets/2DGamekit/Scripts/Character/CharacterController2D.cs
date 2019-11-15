@@ -145,7 +145,7 @@ public class CharacterController2D : MonoBehaviour
         this.GetComponent<OurGuyMovement>().enabled = false;
         yield return new WaitForSeconds(0.1f);
         animator.SetBool("dead", true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
         health = healthIni;
         Scene activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(activeScene.name);
@@ -186,7 +186,6 @@ public class CharacterController2D : MonoBehaviour
     private IEnumerator Jump()
     {
         m_JumpFinished = false;
-        animator.SetBool("jump", false);
         m_Grounded = false;
         //m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         animator.SetBool("jump", true);

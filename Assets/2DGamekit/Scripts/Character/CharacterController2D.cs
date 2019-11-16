@@ -27,12 +27,14 @@ public class CharacterController2D : MonoBehaviour
 
     public LayerMask whatIsEnnemy;
     private float timeBeforeAttck;
-    public float attackRate;
+    public float punchRate;
     public Transform punchPos;
-    public Transform kickPos;
     public float punchRange;
-    public float kickRange;
     public float punchDamage;
+	
+	public float kickRate;
+    public Transform kickPos;
+    public float kickRange;
     public float kickDamage;
 	public float envDamage;
 	
@@ -54,12 +56,13 @@ public class CharacterController2D : MonoBehaviour
 		
 		animator.SetBool("dead", false);
 
-        attackRate = 0.7f;
+        punchRate = 0.7f;
+		kickRate = 1f;
         timeBeforeAttck = 0f;
 
 		envDamage = 1;
-        punchDamage = 12f;
-        kickDamage = 7f;
+        punchDamage = 7f;
+        kickDamage = 12f;
         kickRange = 2 * punchRange;
         health = 100f;
     }
@@ -113,22 +116,21 @@ public class CharacterController2D : MonoBehaviour
     public void Attack(bool punch, bool kick) {
         if (timeBeforeAttck <= 0)
         {
-            timeBeforeAttck = attackRate;
             if (punch) {
+				timeBeforeAttck = punchRate;
                 animator.SetTrigger("punch");
                 Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(punchPos.position, punchRange, whatIsEnnemy);
                 if (damageableEnemies.Length > 0) {
                     damageableEnemies[0].GetComponent<EnemyBehavior2D>().Damage(punchDamage);
-                    print("punch");
                 }
             }
             else if (kick)
             {
+				timeBeforeAttck = kickRate;
                 animator.SetTrigger("kick");
                 Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(kickPos.position, kickRange, whatIsEnnemy);
                 if (damageableEnemies.Length > 0) {
                     damageableEnemies[0].GetComponent<EnemyBehavior2D>().Damage(kickDamage);
-                    print("kick");
                 }
             }
         }

@@ -25,14 +25,23 @@ public class EnemyBehavior2D : MonoBehaviour
     public float health = 15f;
     public float damage = 10f;
     public float velocity;
+	
 	[Range(0, 1f)] public float meat_spawn_prob;
 	public float meat_value;
+	[Range(0, 1f)] public float flight_prob_100;
+	[Range(0, 1f)] public float flight_prob_50;
+	[Range(0, 1f)] public float flight_prob_20;
+	[Range(0, 1f)] public float flight_prob_10;
+	private float current_flight_prob;
+	private bool flying_away;
 
     public GameObject player;
 
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		current_flight_prob = flight_prob_100;
+		flying_away = false;
     }
 
     private void FixedUpdate()
@@ -53,21 +62,27 @@ public class EnemyBehavior2D : MonoBehaviour
                 }
             }
 
-            if (health <= 0)
+            if (health <= 0 || (flying_away && !gameObject.GetComponent<Renderer>().isVisible))
             {
                 Die();
             }
 
             float move = 0f;
-            if (Math.Abs(player.transform.position.x - attackPos.position.x) < attackRange)
-            {
-                Attack();
-            }
-            else
-            {
-                move = player.transform.position.x > attackPos.position.x ? 1 : -1;
-                Move(move);
-            }
+			if (flying_away) {
+				move = player.transform.position.x > attackPos.position.x ? -1 : 1;
+				Move(move);
+			} else {
+				Fly_away();
+				if (Math.Abs(player.transform.position.x - attackPos.position.x) < attackRange)
+				{
+					Attack();
+				}
+				else
+				{
+					move = player.transform.position.x > attackPos.position.x ? 1 : -1;
+					Move(move);
+				}
+			}
         }
 
         if (timeBeforeAttck > 0) {
@@ -108,10 +123,24 @@ public class EnemyBehavior2D : MonoBehaviour
             }
         }
     }
+	
+	public void Fly_away() {
+		if (new System.Random().NextDouble() <= current_flight_prob) {
+			velocity *= 2.5f;
+			flying_away = true;
+		}
+	}
 
     public void Damage(float damage)
     {
         health -= damage;
+		if (health <= 10) {
+			current_flight_prob = flight_prob_10;
+		} else if (health <= 20) {
+			current_flight_prob = flight_prob_20;
+		} else if (health <= 50) {
+			current_flight_prob = flight_prob_50;
+		}
     }
 
     private void Flip()
@@ -127,7 +156,6 @@ public class EnemyBehavior2D : MonoBehaviour
     {
 		if (new System.Random().NextDouble() <= meat_spawn_prob) {
 			player.GetComponent<CharacterController2D>().Heal(meat_value);
-			print(player.GetComponent<CharacterController2D>().health);
 		}
 		
         Destroy(gameObject);

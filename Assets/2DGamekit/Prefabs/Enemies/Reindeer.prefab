@@ -159,6 +159,10 @@ MonoBehaviour:
   velocity: 4.2
   meat_spawn_prob: 0.8
   meat_value: 10
+  flight_prob_100: 0.001
+  flight_prob_50: 0.02
+  flight_prob_20: 0.03
+  flight_prob_10: 0.04
   player: {fileID: 0}
 --- !u!1 &1480037878406079960
 GameObject:

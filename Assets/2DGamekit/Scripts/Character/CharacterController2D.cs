@@ -17,7 +17,7 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private Transform m_Transform;
     private GameObject healthUI;
-    public Animator animator;
+    private Animator animator;
 
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private bool m_JumpFinished = true; // For determining whether the player is still jumping or not
@@ -47,6 +47,7 @@ public class CharacterController2D : MonoBehaviour
     private void Awake() {
         healthUI = GameObject.Find("HealthNumber");
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();
 		
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -114,7 +115,7 @@ public class CharacterController2D : MonoBehaviour
         {
             timeBeforeAttck = attackRate;
             if (punch) {
-                animator.SetBool("punch", true);
+                animator.SetTrigger("punch");
                 Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(punchPos.position, punchRange, whatIsEnnemy);
                 if (damageableEnemies.Length > 0) {
                     damageableEnemies[0].GetComponent<EnemyBehavior2D>().Damage(punchDamage);
@@ -123,7 +124,7 @@ public class CharacterController2D : MonoBehaviour
             }
             else if (kick)
             {
-                animator.SetBool("kick", true);
+                animator.SetTrigger("kick");
                 Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(kickPos.position, kickRange, whatIsEnnemy);
                 if (damageableEnemies.Length > 0) {
                     damageableEnemies[0].GetComponent<EnemyBehavior2D>().Damage(kickDamage);

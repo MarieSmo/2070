@@ -536,7 +536,6 @@ GameObject:
   - component: {fileID: 335679878}
   - component: {fileID: 335679879}
   - component: {fileID: 335679881}
-  - component: {fileID: 335679880}
   m_Layer: 13
   m_Name: FinalWave
   m_TagString: Untagged
@@ -571,7 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextWave: 0
-  timeBetweenWaves: 5
+  timeBetweenWaves: 2
   state: 2
   spawnPoints:
   - {fileID: 1430010352}
@@ -580,41 +579,18 @@ MonoBehaviour:
   - count: 1
     rate: 5
     enemies:
-    - enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed,
-        type: 3}
-      weight: 1
-    - enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed,
+    - enemy: {fileID: 1480037878246296840, guid: f8cf11c194cf58a4b87e4886329e36a4,
         type: 3}
       weight: 3
+    - enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed,
+        type: 3}
+      weight: 6
+  - count: 1
+    rate: 5
+    enemies:
     - enemy: {fileID: 3784148227913888768, guid: 076336f9be38dc44c937235aa7a112cf,
         type: 3}
-      weight: 1
---- !u!61 &335679880
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 335679877}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2}
-  m_EdgeRadius: 0
+      weight: 3
 --- !u!114 &335679881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,7 +630,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398877942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 122, y: 0, z: 0}
+  m_LocalPosition: {x: 130, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7619,7 +7595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextWave: 0
-  timeBetweenWaves: 5
+  timeBetweenWaves: 2.5
   state: 2
   spawnPoints:
   - {fileID: 1430010352}
@@ -7640,6 +7616,9 @@ MonoBehaviour:
     - enemy: {fileID: 1480037878246296840, guid: f8cf11c194cf58a4b87e4886329e36a4,
         type: 3}
       weight: 1
+    - enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed,
+        type: 3}
+      weight: 5
 --- !u!114 &1955320765
 MonoBehaviour:
   m_ObjectHideFlags: 0

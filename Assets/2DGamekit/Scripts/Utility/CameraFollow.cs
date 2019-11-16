@@ -19,24 +19,6 @@ public class CameraFollow : MonoBehaviour
         currentWave = 0;
     }
 
-    // This function counts the number of enemies that are in an radius of 20 from the middle of the wave screen
-    // It's just temporary, when we have a way of know if the wave is completed, we can change it.
-    int CountEnemiesInArea(Vector3 wavePosition)
-    {
-        int enemyCounter = 0;
-
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(wavePosition, 20);
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            if (enemies[i].gameObject.tag == "Enemy")
-            {
-                enemyCounter++;
-            }
-        }
-
-        return enemyCounter;
-    }
-
     bool WaveCompleted()
     {
         bool waveIsCompleted = false;
@@ -67,7 +49,6 @@ public class CameraFollow : MonoBehaviour
             if (currentWave < waves.Length && Player != null && Player.position.x >= waves[currentWave].position.x && Player.position.x <= waves[currentWave].position.x + halfWidth/2) // change this 10 for an object or whatever thing to state the limit of the screen
             {
                 attachCamera = false;
-                int enemyCounter = CountEnemiesInArea(waves[currentWave].position);
                 // if there are no enemies and the player is at the right of the camera
                 if (WaveCompleted())
                 {
@@ -99,7 +80,6 @@ public class CameraFollow : MonoBehaviour
 
         return attachCamera;
     }
-
 
     private void FixedUpdate()
     {

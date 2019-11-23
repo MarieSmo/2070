@@ -22,7 +22,8 @@ public class EnemyBehavior2D : MonoBehaviour
     public Transform attackPos;
     public float attackRange;
     public LayerMask whatIsEnnemy;
-    public float health = 15f;
+	public float max_health = 15f;
+    public float health;
     public float damage = 10f;
     public float velocity;
 	
@@ -42,6 +43,7 @@ public class EnemyBehavior2D : MonoBehaviour
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		current_flight_prob = flight_prob_100;
 		flying_away = false;
+		health = max_health;
     }
 
     private void FixedUpdate()
@@ -64,7 +66,7 @@ public class EnemyBehavior2D : MonoBehaviour
 
             if (health <= 0 || (flying_away && !gameObject.GetComponent<Renderer>().isVisible))
             {
-                Die();
+                Die(flying_away);
             }
 
             float move = 0f;
@@ -125,7 +127,7 @@ public class EnemyBehavior2D : MonoBehaviour
     }
 	
 	public void Fly_away() {
-		if (new System.Random().NextDouble() <= current_flight_prob) {
+		if (new System.Random().NextDouble() <= current_flight_prob * 0.1) {
 			velocity *= 2.5f;
 			flying_away = true;
 		}
@@ -134,11 +136,11 @@ public class EnemyBehavior2D : MonoBehaviour
     public void Damage(float damage)
     {
         health -= damage;
-		if (health <= 10) {
+		if (health <= max_health * 0.1) {
 			current_flight_prob = flight_prob_10;
-		} else if (health <= 20) {
+		} else if (health <= max_health * 0.2) {
 			current_flight_prob = flight_prob_20;
-		} else if (health <= 50) {
+		} else if (health <= max_health * 0.5) {
 			current_flight_prob = flight_prob_50;
 		}
     }
@@ -152,9 +154,9 @@ public class EnemyBehavior2D : MonoBehaviour
         transform.localScale = theScale;
     }
 
-    private void Die()
+    private void Die(bool flying_away)
     {
-		if (new System.Random().NextDouble() <= meat_spawn_prob) {
+		if (!flying_away && (new System.Random().NextDouble() <= meat_spawn_prob)) {
 			player.GetComponent<CharacterController2D>().Heal(meat_value);
 		}
 		

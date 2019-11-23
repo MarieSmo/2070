@@ -404,7 +404,7 @@ MonoBehaviour:
   - count: 2
     rate: 1
     enemies:
-    - enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed,
+    - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,
         type: 3}
       weight: 100
 --- !u!4 &314864149
@@ -582,7 +582,7 @@ MonoBehaviour:
     - enemy: {fileID: 1480037878246296840, guid: f8cf11c194cf58a4b87e4886329e36a4,
         type: 3}
       weight: 3
-    - enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed,
+    - enemy: {fileID: 7396568159922848710, guid: d96be5459ef28064fa119b969b22f773,
         type: 3}
       weight: 6
   - count: 1
@@ -2280,7 +2280,7 @@ MonoBehaviour:
   - count: 4
     rate: 4
     enemies:
-    - enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed,
+    - enemy: {fileID: 7396568159922848710, guid: d96be5459ef28064fa119b969b22f773,
         type: 3}
       weight: 60
     - enemy: {fileID: 841208005379407281, guid: c00a4c9abcaed35409805ac70653b39a,
@@ -8411,7 +8411,7 @@ MonoBehaviour:
     - enemy: {fileID: 841208005379407281, guid: c00a4c9abcaed35409805ac70653b39a,
         type: 3}
       weight: 1
-    - enemy: {fileID: 4032114058481329495, guid: 1a4e0d480b64be441baff4f1af0138ed,
+    - enemy: {fileID: 7396568159922848710, guid: d96be5459ef28064fa119b969b22f773,
         type: 3}
       weight: 3
   - count: 1

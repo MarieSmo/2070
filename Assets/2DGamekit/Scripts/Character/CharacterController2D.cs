@@ -17,10 +17,13 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private Transform m_Transform;
     private GameObject healthUI;
+    private GameObject healthIcon;
     private Animator animator;
 
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private bool m_JumpFinished = true; // For determining whether the player is still jumping or not
+    private bool m_UIFinished = true;   // For determining whether the UI's colour is changing or not
+    private bool m_UIShaking = false;   // For determining whether the UI's shake is active or not
     private Vector3 m_Velocity = Vector3.zero;
     public float health;
     private float healthIni;
@@ -48,6 +51,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Awake() {
         healthUI = GameObject.Find("HealthNumber");
+        healthIcon = GameObject.Find("HealthIcon");
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		
@@ -118,7 +122,7 @@ public class CharacterController2D : MonoBehaviour
         {
             if (punch) {
 				timeBeforeAttck = punchRate;
-                animator.SetTrigger("punch");
+                //animator.SetTrigger("punch");
                 Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(punchPos.position, punchRange, whatIsEnnemy);
                 if (damageableEnemies.Length > 0) {
                     damageableEnemies[0].GetComponent<EnemyBehavior2D>().Damage(punchDamage);
@@ -127,7 +131,7 @@ public class CharacterController2D : MonoBehaviour
             else if (kick)
             {
 				timeBeforeAttck = kickRate;
-                animator.SetTrigger("kick");
+                //animator.SetTrigger("kick");
                 Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(kickPos.position, kickRange, whatIsEnnemy);
                 if (damageableEnemies.Length > 0) {
                     damageableEnemies[0].GetComponent<EnemyBehavior2D>().Damage(kickDamage);
@@ -139,7 +143,7 @@ public class CharacterController2D : MonoBehaviour
     public void Damage(float damage)
     {
         health -= damage;
-        HealthUI();
+        StartCoroutine(HealthUI(true, false, false));
     }
 
     private IEnumerator Die()
@@ -172,18 +176,64 @@ public class CharacterController2D : MonoBehaviour
             health = 100;
         }
 
-        HealthUI();
+        StartCoroutine(HealthUI(false, true, false));
     }
     
-    void HealthUI() {
-        if (health >= 0) healthUI.GetComponent<Text>().text = Math.Floor(health).ToString();
+    IEnumerator HealthUI(bool damage, bool heal, bool hurt)
+    {
+        if (health > 0) healthUI.GetComponent<Text>().text = Math.Floor(health).ToString();
         else healthUI.GetComponent<Text>().text = "YOU DIED";
+
+        if (m_UIFinished) {
+            if (damage)
+            {
+                m_UIFinished = false;
+                for (float t = 0.01f; t < 0.5f; t += Time.deltaTime)
+                {
+                    healthUI.GetComponent<Text>().color = Color.Lerp(Color.white, Color.red, Mathf.Min(1, t / 0.25f));
+                    healthIcon.GetComponent<Text>().color = Color.Lerp(Color.white, Color.red, Mathf.Min(1, t / 0.25f));
+                    healthUI.GetComponent<Text>().color = Color.Lerp(Color.red, Color.white, Mathf.Min(1, t / 0.25f));
+                    healthIcon.GetComponent<Text>().color = Color.Lerp(Color.red, Color.white, Mathf.Min(1, t / 0.25f));
+                    yield return null;
+                }
+                m_UIFinished = true;
+            }
+            else if (heal)
+            {
+                m_UIFinished = false;
+                for (float t = 0.01f; t < 0.5f; t += Time.deltaTime)
+                {
+                    healthUI.GetComponent<Text>().color = Color.Lerp(Color.white, Color.green, Mathf.Min(1, t / 0.25f));
+                    healthIcon.GetComponent<Text>().color = Color.Lerp(Color.white, Color.green, Mathf.Min(1, t / 0.25f));
+                    healthUI.GetComponent<Text>().color = Color.Lerp(Color.green, Color.white, Mathf.Min(1, t / 0.25f));
+                    healthIcon.GetComponent<Text>().color = Color.Lerp(Color.green, Color.white, Mathf.Min(1, t / 0.25f));
+                    yield return null;
+                }
+                m_UIFinished = true;
+            }
+        }
+
+        if(hurt && !m_UIShaking)
+        {
+            float speed = 30.0f; //how fast it shakes
+            float amount = 1f; //how much it shakes
+
+            m_UIShaking = true;
+            for (float t = 0.01f; t < 0.5f; t += Time.deltaTime)
+            {
+                healthUI.transform.position = new Vector3(healthUI.transform.position.x + Mathf.Sin(Time.time * speed) * amount, healthUI.transform.position.y, healthUI.transform.position.z);
+                healthIcon.transform.position = new Vector3(healthIcon.transform.position.x + Mathf.Sin(Time.time * speed) * amount, healthIcon.transform.position.y, healthIcon.transform.position.z);
+                yield return null;
+            }
+            yield return new WaitForSeconds(1.5f); //Same as rate in Hurt method
+            m_UIShaking = false;
+        }
     }
 
     private void Hurt(float lost_health, float rate)
     {
         health -= lost_health * Time.fixedDeltaTime / rate;
-        HealthUI();
+        StartCoroutine(HealthUI(false,false,true));
     }
 
     private IEnumerator Jump()

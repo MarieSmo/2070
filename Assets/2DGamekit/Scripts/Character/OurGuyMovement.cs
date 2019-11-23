@@ -35,7 +35,7 @@ public class OurGuyMovement : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    //Update is called once per frame
     //We wanna get the Inputs in here
     void Update()
     {

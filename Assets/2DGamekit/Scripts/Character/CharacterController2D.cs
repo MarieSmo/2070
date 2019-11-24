@@ -122,7 +122,7 @@ public class CharacterController2D : MonoBehaviour
         {
             if (punch) {
 				timeBeforeAttck = punchRate;
-                //animator.SetTrigger("punch");
+                animator.SetTrigger("punch");
                 Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(punchPos.position, punchRange, whatIsEnnemy);
                 if (damageableEnemies.Length > 0) {
                     damageableEnemies[0].GetComponent<EnemyBehavior2D>().Damage(punchDamage);
@@ -131,7 +131,7 @@ public class CharacterController2D : MonoBehaviour
             else if (kick)
             {
 				timeBeforeAttck = kickRate;
-                //animator.SetTrigger("kick");
+                animator.SetTrigger("kick");
                 Collider2D[] damageableEnemies = Physics2D.OverlapCircleAll(kickPos.position, kickRange, whatIsEnnemy);
                 if (damageableEnemies.Length > 0) {
                     damageableEnemies[0].GetComponent<EnemyBehavior2D>().Damage(kickDamage);

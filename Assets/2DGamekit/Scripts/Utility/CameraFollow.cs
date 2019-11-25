@@ -26,6 +26,9 @@ public class CameraFollow : MonoBehaviour
         {
             waveIsCompleted = true;
             Debug.Log("Wave completed: " + currentWave);
+
+            //If wave is completed set it on the WaveController script
+            GameObject.Find(waves[currentWave].name).GetComponent<WaveController>().setCompleted(true);
         }
         return waveIsCompleted;
     }
@@ -50,7 +53,7 @@ public class CameraFollow : MonoBehaviour
             {
                 attachCamera = false;
                 // if there are no enemies and the player is at the right of the camera
-                if (WaveCompleted())
+                if (WaveCompleted() && !GameObject.Find(waves[currentWave].name).GetComponent<WaveController>().levelEnded())
                 {
                     attachCamera = true;
                     if (transform.position.x <= Player.position.x)
@@ -60,8 +63,6 @@ public class CameraFollow : MonoBehaviour
                         smoothCompleted = false;
                     }
 
-                    //If wave is completed set it on the WaveController script
-                    GameObject.Find(waves[currentWave].name).GetComponent<WaveController>().setCompleted(true);
                     currentWave++;
                 }
             }

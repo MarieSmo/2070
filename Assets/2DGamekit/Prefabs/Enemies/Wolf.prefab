@@ -149,9 +149,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3222265111
   m_GroundCheck: {fileID: 7396568160160230165}
-  attackRate: 0.7
+  attackRate: 0.8
   attackPos: {fileID: 7396568160768162412}
-  attackRange: 0.84
+  attackRange: 0.6
   whatIsEnnemy:
     serializedVersion: 2
     m_Bits: 8192
@@ -160,9 +160,9 @@ MonoBehaviour:
   damage: 6
   velocity: 3.8
   meat_spawn_prob: 0.4
-  meat_value: 10
+  meat_value: 12
   flight_prob_100: 0
-  flight_prob_50: 0.02
+  flight_prob_50: 0.001
   flight_prob_20: 0.04
   flight_prob_10: 0.05
   player: {fileID: 0}

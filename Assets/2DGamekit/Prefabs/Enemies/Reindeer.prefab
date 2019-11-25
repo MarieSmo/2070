@@ -154,12 +154,12 @@ MonoBehaviour:
   whatIsEnnemy:
     serializedVersion: 2
     m_Bits: 8192
-  max_health: 12
-  health: 12
+  max_health: 13
+  health: 13
   damage: 7
   velocity: 4.2
   meat_spawn_prob: 0.8
-  meat_value: 10
+  meat_value: 12
   flight_prob_100: 0.001
   flight_prob_50: 0.02
   flight_prob_20: 0.03

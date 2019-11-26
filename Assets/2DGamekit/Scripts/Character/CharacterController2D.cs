@@ -74,7 +74,9 @@ public class CharacterController2D : MonoBehaviour
     {
         //Die animation
         if (health < 1)
+        {
             StartCoroutine(Die());
+        }
 
         //Hurt character
         Hurt(1, 2);
@@ -151,7 +153,7 @@ public class CharacterController2D : MonoBehaviour
         this.GetComponent<OurGuyMovement>().enabled = false;
         yield return new WaitForSeconds(0.1f);
         animator.SetBool("dead", true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1f);
         health = healthIni;
         Scene activeScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(activeScene.name);
@@ -180,9 +182,9 @@ public class CharacterController2D : MonoBehaviour
     
     IEnumerator HealthUI(bool damage, bool heal, bool hurt)
     {
-        if (health > 0) healthUI.GetComponent<Text>().text = Math.Floor(health).ToString();
-        else healthUI.GetComponent<Text>().text = "YOU DIED";
-        
+        if (health >= 1) healthUI.GetComponent<Text>().text = Math.Floor(health).ToString();
+        else             healthUI.GetComponent<Text>().text = "YOU DIED";
+
         if (damage && m_UIGreenFinished && m_UIRedFinished)
         {
             m_UIRedFinished = false;
@@ -209,16 +211,16 @@ public class CharacterController2D : MonoBehaviour
 
         if(hurt && !m_UIShaking)
         {
-            float speed = 30.0f; //how fast it shakes
-            float amount = 1f; //how much it shakes
+            float speed = 60.0f; //how fast it shakes
+            float amount = 2f; //how much it shakes
 
             m_UIShaking = true;
-            for (float t = 0.01f; t < 0.5f; t += Time.deltaTime)
+            for (float t = 0.01f; t < 0.3f; t += Time.deltaTime)
             {
                 healthUI.transform.position = new Vector3(healthUI.transform.position.x + Mathf.Sin(Time.time * speed) * amount, healthUI.transform.position.y, healthUI.transform.position.z);
                 yield return null;
             }
-            yield return new WaitForSeconds(1.5f); //Same as rate in Hurt method
+            yield return new WaitForSeconds(1.7f); //Same as rate in Hurt method
             m_UIShaking = false;
         }
     }

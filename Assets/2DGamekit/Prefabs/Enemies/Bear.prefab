@@ -148,9 +148,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3222265111
   m_GroundCheck: {fileID: 3784148227947830483}
-  attackRate: 1.4
+  attackRate: 1
   attackPos: {fileID: 3784148228155198890}
-  attackRange: 1
+  attackRange: 1.66
   whatIsEnnemy:
     serializedVersion: 2
     m_Bits: 8192

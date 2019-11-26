@@ -17,13 +17,13 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private Transform m_Transform;
     private GameObject healthUI;
-    private GameObject healthIcon;
     private Animator animator;
 
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private bool m_JumpFinished = true; // For determining whether the player is still jumping or not
-    private bool m_UIFinished = true;   // For determining whether the UI's colour is changing or not
-    private bool m_UIShaking = false;   // For determining whether the UI's shake is active or not
+    private bool m_UIGreenFinished = true;   // For determining whether the UI's colour is changing or not
+    private bool m_UIRedFinished = true;     // For determining whether the UI's colour is changing or not
+    private bool m_UIShaking = false;        // For determining whether the UI's shake is active or not
     private Vector3 m_Velocity = Vector3.zero;
     public float health;
     private float healthIni;
@@ -51,7 +51,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void Awake() {
         healthUI = GameObject.Find("HealthNumber");
-        healthIcon = GameObject.Find("HealthIcon");
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		
@@ -183,34 +182,29 @@ public class CharacterController2D : MonoBehaviour
     {
         if (health > 0) healthUI.GetComponent<Text>().text = Math.Floor(health).ToString();
         else healthUI.GetComponent<Text>().text = "YOU DIED";
-
-        if (m_UIFinished) {
-            if (damage)
+        
+        if (damage && m_UIGreenFinished && m_UIRedFinished)
+        {
+            m_UIRedFinished = false;
+            healthUI.GetComponent<Text>().color = Color.red;
+            for (float t = 0.01f; t < 1f && !m_UIRedFinished && m_UIGreenFinished; t += Time.deltaTime)
             {
-                m_UIFinished = false;
-                for (float t = 0.01f; t < 0.5f; t += Time.deltaTime)
-                {
-                    healthUI.GetComponent<Text>().color = Color.Lerp(Color.white, Color.red, Mathf.Min(1, t / 0.25f));
-                    healthIcon.GetComponent<Text>().color = Color.Lerp(Color.white, Color.red, Mathf.Min(1, t / 0.25f));
-                    healthUI.GetComponent<Text>().color = Color.Lerp(Color.red, Color.white, Mathf.Min(1, t / 0.25f));
-                    healthIcon.GetComponent<Text>().color = Color.Lerp(Color.red, Color.white, Mathf.Min(1, t / 0.25f));
-                    yield return null;
-                }
-                m_UIFinished = true;
+                healthUI.GetComponent<Text>().color = Color.Lerp(Color.red, Color.white, Mathf.Min(1, t));
+                yield return null;
             }
-            else if (heal)
+            m_UIRedFinished = true;
+        }
+        else if (heal && m_UIGreenFinished)
+        {
+            m_UIGreenFinished = false;
+            m_UIRedFinished = true;
+            healthUI.GetComponent<Text>().color = Color.green;
+            for (float t = 0.01f; t < 1f && !m_UIGreenFinished; t += Time.deltaTime)
             {
-                m_UIFinished = false;
-                for (float t = 0.01f; t < 0.5f; t += Time.deltaTime)
-                {
-                    healthUI.GetComponent<Text>().color = Color.Lerp(Color.white, Color.green, Mathf.Min(1, t / 0.25f));
-                    healthIcon.GetComponent<Text>().color = Color.Lerp(Color.white, Color.green, Mathf.Min(1, t / 0.25f));
-                    healthUI.GetComponent<Text>().color = Color.Lerp(Color.green, Color.white, Mathf.Min(1, t / 0.25f));
-                    healthIcon.GetComponent<Text>().color = Color.Lerp(Color.green, Color.white, Mathf.Min(1, t / 0.25f));
-                    yield return null;
-                }
-                m_UIFinished = true;
+                healthUI.GetComponent<Text>().color = Color.Lerp(Color.green, Color.white, Mathf.Min(1, t));
+                yield return null;
             }
+            m_UIGreenFinished = true;
         }
 
         if(hurt && !m_UIShaking)
@@ -222,7 +216,6 @@ public class CharacterController2D : MonoBehaviour
             for (float t = 0.01f; t < 0.5f; t += Time.deltaTime)
             {
                 healthUI.transform.position = new Vector3(healthUI.transform.position.x + Mathf.Sin(Time.time * speed) * amount, healthUI.transform.position.y, healthUI.transform.position.z);
-                healthIcon.transform.position = new Vector3(healthIcon.transform.position.x + Mathf.Sin(Time.time * speed) * amount, healthIcon.transform.position.y, healthIcon.transform.position.z);
                 yield return null;
             }
             yield return new WaitForSeconds(1.5f); //Same as rate in Hurt method
@@ -240,7 +233,7 @@ public class CharacterController2D : MonoBehaviour
     {
         m_JumpFinished = false;
         m_Grounded = false;
-        //m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+        m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         animator.SetBool("jump", true);
         yield return new WaitForSeconds(1);
         m_JumpFinished = true;

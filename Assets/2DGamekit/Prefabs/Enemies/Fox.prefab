@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 5105071660711106894}
   - component: {fileID: 8154939202069251287}
   m_Layer: 9
-  m_Name: Fox
+  m_Name: Fox 1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,9 +209,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3222265111
   m_GroundCheck: {fileID: 5105071660682408337}
-  attackRate: 0.5
+  attackRate: 0.3
   attackPos: {fileID: 5105071660470313192}
-  attackRange: 0.45
+  attackRange: 0.58
   whatIsEnnemy:
     serializedVersion: 2
     m_Bits: 8192
@@ -220,8 +220,8 @@ MonoBehaviour:
   damage: 2
   velocity: 5
   meat_spawn_prob: 0.4
-  meat_value: 4
-  flight_prob_100: 0.001
+  meat_value: 5
+  flight_prob_100: 0.002
   flight_prob_50: 0.03
   flight_prob_20: 0.05
   flight_prob_10: 0.08

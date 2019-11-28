@@ -46,7 +46,6 @@ public class WaveController : MonoBehaviour
 
     public void setCompleted(bool val)
     {
-        print(this.name);
         completed = val;
         if(val==true)
         {

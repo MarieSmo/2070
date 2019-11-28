@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnEnemies : MonoBehaviour
 {
@@ -27,18 +28,36 @@ public class SpawnEnemies : MonoBehaviour
 
     //Attributes
 
-    public int nextWave = 0;
-    private float searchCountdown = 1.0f;
+    public bool waveZone = false;
     public float timeBetweenWaves = 2.0f;
-    private float waveCountDown = 0.0f;
+    public int nextWave = 0;
     public SpawnState state = SpawnState.COUNTING;
     public Transform[] spawnPoints;
     public Wave[] waves;
+    private bool arrowToRight = true;
+    private bool canFade = false;
+    private bool enteredZone = false;
+    private bool moveArrow = false;
+    private float searchCountdown = 1.0f;
+    private float waveCountDown = 0.0f;
+    private float arrowIni, arrowEnd;
+    private GameObject waveNumber;
+    private GameObject waveText;
+    private GameObject wavesArrow;
+    private GameObject wavesCleared;
 
     //Methods
 
     private void Start()
     {
+        waveNumber = GameObject.Find("WaveNumber");
+        waveText = GameObject.Find("WaveText");
+        wavesArrow = GameObject.Find("WavesArrow");
+        wavesCleared = GameObject.Find("WavesCleared");
+
+        arrowIni = wavesArrow.transform.position.x;
+        arrowEnd = arrowIni + 50;
+
         if (spawnPoints.Length == 0)
         {
             Debug.LogError("No spawn points referenced.");
@@ -54,7 +73,7 @@ public class SpawnEnemies : MonoBehaviour
             //Mark current wave as completed
             if (!EnemyIsAlive())
             {
-                WaveCompleted();
+                StartCoroutine(WaveCompleted());
                 return;
             }
             else
@@ -68,12 +87,52 @@ public class SpawnEnemies : MonoBehaviour
             //Start a new wave if possible
             if (state != SpawnState.SPAWNING && nextWave != waves.Length)
             {
+                //Start a wave zone if needed
+
+                if (waveZone && !enteredZone)
+                {
+                    enteredZone = true;
+                    waveNumber.GetComponent<CanvasRenderer>().SetAlpha(0f);
+                    waveNumber.GetComponent<Text>().text = nextWave+"/"+waves.Length;
+                    waveNumber.GetComponent<Text>().CrossFadeAlpha(1f, 1f, false);
+                    waveText.GetComponent<Text>().text = "Entered wave zone";
+                    StartCoroutine(FadeUI(waveText));
+                }
+
                 StartCoroutine(SpawnWave(waves[nextWave])); 
             }
         }
         else
         {
             waveCountDown -= Time.deltaTime;
+        }
+
+        //Move UI arrow if needed
+        
+        if (moveArrow)
+        {
+            if (arrowToRight && wavesArrow.transform.position.x >= arrowEnd)
+            {
+                arrowToRight = false;
+            }
+            else if (!arrowToRight && wavesArrow.transform.position.x <= arrowIni)
+            {
+                arrowToRight = true;
+            }
+
+            if (arrowToRight)
+                wavesArrow.transform.position = new Vector3(wavesArrow.transform.position.x + 1f, wavesArrow.transform.position.y, wavesArrow.transform.position.z);
+            else
+                wavesArrow.transform.position = new Vector3(wavesArrow.transform.position.x - 1f, wavesArrow.transform.position.y, wavesArrow.transform.position.z);
+        }
+
+        if ((Input.GetKey("right") || Input.GetKey("d")) && canFade && wavesArrow.transform.position.x == arrowIni)
+        {
+            wavesCleared.GetComponent<Text>().CrossFadeAlpha(0f, 1f, false);
+            wavesArrow.GetComponent<Text>().CrossFadeAlpha(0f, 1f, false);
+            waveNumber.GetComponent<Text>().CrossFadeAlpha(0f, 1f, false);
+            moveArrow = false;
+            canFade = false;
         }
     }
 
@@ -143,7 +202,6 @@ public class SpawnEnemies : MonoBehaviour
 
     IEnumerator SpawnWave(Wave wave) 
     {
-        Debug.Log("Spawning wave " + nextWave);
         state = SpawnState.SPAWNING;
 
         //Spawn a random enemy 
@@ -194,18 +252,49 @@ public class SpawnEnemies : MonoBehaviour
 
     //Marks current wave as completed and sets the next wave's index
 
-    public void WaveCompleted()
+    public IEnumerator WaveCompleted()
     {
-        Debug.Log("Wave Completed!");
-
         nextWave++;
         state = SpawnState.COUNTING;
         waveCountDown = timeBetweenWaves;
 
-        if (nextWave >= waves.Length)
+        if (waveZone)
         {
-            Debug.Log("All waves complete");
+            waveNumber.GetComponent<Text>().text = nextWave + "/" + waves.Length;
+
+            if (nextWave >= waves.Length)
+            {
+                waveText.GetComponent<Text>().text = "";
+                wavesArrow.GetComponent<CanvasRenderer>().SetAlpha(0f);
+                wavesCleared.GetComponent<CanvasRenderer>().SetAlpha(0f);
+                wavesArrow.GetComponent<Text>().enabled = true;
+                wavesCleared.GetComponent<Text>().enabled = true;
+                wavesArrow.GetComponent<Text>().CrossFadeAlpha(1f, 1f, false);
+                wavesCleared.GetComponent<Text>().CrossFadeAlpha(1f, 1f, false);
+                yield return new WaitForSeconds(1f);
+                moveArrow = true;
+                canFade = true;
+                yield return null;
+            }
+            else
+            {
+                waveText.GetComponent<CanvasRenderer>().SetAlpha(0f);
+                waveText.GetComponent<Text>().text = "Wave cleared";
+                StartCoroutine(FadeUI(waveText));
+                yield return null;
+            }
         }
+    }
+
+    //Fades UI in and out
+
+    private IEnumerator FadeUI(GameObject obj)
+    {
+        obj.GetComponent<CanvasRenderer>().SetAlpha(0f);
+        obj.GetComponent<Text>().CrossFadeAlpha(1f, 1f, false);
+        yield return new WaitForSeconds(2f);
+        obj.GetComponent<Text>().CrossFadeAlpha(0f, 1f, false);
+        yield return null;
     }
 
 }

@@ -25,7 +25,6 @@ public class CameraFollow : MonoBehaviour
         if (currentWave < waves.Length && waves[currentWave].GetComponent<SpawnEnemies>().nextWave >= waves[currentWave].GetComponent<SpawnEnemies>().waves.Length)
         {
             waveIsCompleted = true;
-            Debug.Log("Wave completed: " + currentWave);
 
             //If wave is completed set it on the WaveController script
             GameObject.Find(waves[currentWave].name).GetComponent<WaveController>().setCompleted(true);

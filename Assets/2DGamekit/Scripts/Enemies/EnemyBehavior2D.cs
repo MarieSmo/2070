@@ -14,6 +14,7 @@ public class EnemyBehavior2D : MonoBehaviour
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;            // Whether or not the player is grounded.
     private Rigidbody2D m_Rigidbody2D;
+	private Animator animator;
     private bool m_FacingRight = true;  // For determining which way the enemy is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
 
@@ -41,6 +42,7 @@ public class EnemyBehavior2D : MonoBehaviour
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();
 		current_flight_prob = flight_prob_100;
 		flying_away = false;
 		health = max_health;
@@ -77,11 +79,13 @@ public class EnemyBehavior2D : MonoBehaviour
 				Fly_away();
 				if (Math.Abs(player.transform.position.x - attackPos.position.x) < attackRange)
 				{
+					animator.SetBool("attack", true);
 					Attack();
 				}
 				else
 				{
 					move = player.transform.position.x > attackPos.position.x ? 1 : -1;
+					animator.SetBool("attack", false);
 					Move(move);
 				}
 			}
@@ -156,6 +160,7 @@ public class EnemyBehavior2D : MonoBehaviour
 
     private void Die(bool flying_away)
     {
+		animator.SetTrigger("dead");
 		if (!flying_away && (new System.Random().NextDouble() <= meat_spawn_prob)) {
 			player.GetComponent<CharacterController2D>().Heal(meat_value);
 		}

@@ -121,9 +121,9 @@ public class SpawnEnemies : MonoBehaviour
             }
 
             if (arrowToRight)
-                wavesArrow.transform.position = new Vector3(wavesArrow.transform.position.x + 1f, wavesArrow.transform.position.y, wavesArrow.transform.position.z);
+                wavesArrow.transform.position = new Vector3(wavesArrow.transform.position.x + 1.5f, wavesArrow.transform.position.y, wavesArrow.transform.position.z);
             else
-                wavesArrow.transform.position = new Vector3(wavesArrow.transform.position.x - 1f, wavesArrow.transform.position.y, wavesArrow.transform.position.z);
+                wavesArrow.transform.position = new Vector3(wavesArrow.transform.position.x - 1.5f, wavesArrow.transform.position.y, wavesArrow.transform.position.z);
         }
 
         if ((Input.GetKey("right") || Input.GetKey("d")) && canFade && wavesArrow.transform.position.x == arrowIni)
@@ -269,9 +269,9 @@ public class SpawnEnemies : MonoBehaviour
                 wavesCleared.GetComponent<CanvasRenderer>().SetAlpha(0f);
                 wavesArrow.GetComponent<Text>().enabled = true;
                 wavesCleared.GetComponent<Text>().enabled = true;
-                wavesArrow.GetComponent<Text>().CrossFadeAlpha(1f, 1f, false);
-                wavesCleared.GetComponent<Text>().CrossFadeAlpha(1f, 1f, false);
-                yield return new WaitForSeconds(1f);
+                wavesArrow.GetComponent<Text>().CrossFadeAlpha(1f, 0.5f, false);
+                wavesCleared.GetComponent<Text>().CrossFadeAlpha(1f, 0.5f, false);
+                //yield return new WaitForSeconds(0.5f);
                 moveArrow = true;
                 canFade = true;
                 yield return null;
@@ -292,7 +292,7 @@ public class SpawnEnemies : MonoBehaviour
     {
         obj.GetComponent<CanvasRenderer>().SetAlpha(0f);
         obj.GetComponent<Text>().CrossFadeAlpha(1f, 1f, false);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         obj.GetComponent<Text>().CrossFadeAlpha(0f, 1f, false);
         yield return null;
     }

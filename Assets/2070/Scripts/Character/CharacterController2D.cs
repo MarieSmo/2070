@@ -39,8 +39,10 @@ public class CharacterController2D : MonoBehaviour
     public float kickRange;
     public float kickDamage;
 	public float envDamage;
-	
-	[Header("Events")]
+
+    public GameObject winningMenu;
+
+    [Header("Events")]
 	[Space]
 
 	public UnityEvent OnLandEvent;
@@ -263,9 +265,11 @@ public class CharacterController2D : MonoBehaviour
     {
         if (GameObject.Find("Our_guy").transform.position.x > GameObject.Find("LevelEnd").transform.position.x) {
             this.GetComponent<OurGuyMovement>().enabled = false;
+            this.Move(0, false);
             health = healthIni;
-            Scene activeScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(activeScene.name);
+            //Scene activeScene = SceneManager.GetActiveScene();
+            //SceneManager.LoadScene(activeScene.name);
+            winningMenu.SetActive(true);
         }
     }
 }

@@ -77,14 +77,20 @@ public class EnemyBehavior2D : MonoBehaviour
 				Move(move);
 			} else {
 				Fly_away();
-				if (Math.Abs(player.transform.position.x - attackPos.position.x) < attackRange)
+                if (Math.Abs(player.transform.position.x - attackPos.position.x) <= attackRange)
 				{
-					animator.SetBool("attack", true);
+                    print("ATTACKING");
+                    print((player.transform.position.x - attackPos.position.x));
+                    print(attackRange);
+                    animator.SetBool("attack", true);
 					Attack();
 				}
 				else
-				{
-					move = player.transform.position.x > attackPos.position.x ? 1 : -1;
+                {
+                    print("NOT ATTACKING");
+                    print((player.transform.position.x - attackPos.position.x));
+                    print(attackRange);
+                    move = player.transform.position.x > attackPos.position.x ? 1 : -1;
 					animator.SetBool("attack", false);
 					Move(move);
 				}

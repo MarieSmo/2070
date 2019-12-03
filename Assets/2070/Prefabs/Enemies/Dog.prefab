@@ -181,7 +181,7 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 1717371404769922221}
   attackRate: 0.7
   attackPos: {fileID: 1717371405234200020}
-  attackRange: 0.84
+  attackRange: 2
   whatIsEnnemy:
     serializedVersion: 2
     m_Bits: 8192
@@ -239,7 +239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1717371405234200021}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.66, y: 0.11, z: 0}
+  m_LocalPosition: {x: 0, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1717371405005464702}

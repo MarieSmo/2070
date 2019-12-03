@@ -1804,8 +1804,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -142, y: 23}
-  m_SizeDelta: {x: 232.7, y: 554.9}
+  m_AnchoredPosition: {x: -312.3, y: 38.00001}
+  m_SizeDelta: {x: 370.6, y: 516.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &422481103
 MonoBehaviour:
@@ -1828,28 +1828,32 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_Font: {fileID: 12800000, guid: bbb7654d0ef5086449b6299379f659b0, type: 3}
+    m_FontSize: 30
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 298
     m_Alignment: 2
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Art
+  m_Text: 'Game Designer
 
 
 
-    Animator
 
 
 
-    Character Designer
+    Script
 
+
+    Lead Artist
+
+
+    Lead Programmer
 
 
     Programmer
@@ -1857,14 +1861,7 @@ MonoBehaviour:
 
 
 
-    Music
-
-
-
-    Sound Effects
-
-
-'
+    Sound Designer'
 --- !u!222 &422481104
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6221,8 +6218,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308562925}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.34680736, y: 0.9322663, z: 0.4547641}
+  m_LocalPosition: {x: 0, y: 0, z: -0.093233}
+  m_LocalScale: {x: 0.3300823, y: 0.887307, z: 0.43283275}
   m_Children:
   - {fileID: 1204787149}
   - {fileID: 1787555744}
@@ -6231,7 +6228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 301, y: -289}
+  m_AnchoredPosition: {x: 490.25, y: -245.42}
   m_SizeDelta: {x: 515.6, y: 62.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1308562927
@@ -9300,8 +9297,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 116.34998, y: 23}
-  m_SizeDelta: {x: 232.7, y: 554.9}
+  m_AnchoredPosition: {x: 163.19998, y: 38.000008}
+  m_SizeDelta: {x: 476.2, y: 516.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2017702104
 MonoBehaviour:
@@ -9324,10 +9321,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_Font: {fileID: 12800000, guid: bbb7654d0ef5086449b6299379f659b0, type: 3}
+    m_FontSize: 28
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 0
@@ -9336,36 +9333,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '-----
-
-    -----
-
-
-    -----
-
-    -----
-
-
-    ------
-
-    ------
-
-
-    ------
-
-    ------
-
-    ------
-
-
-    ------
-
-    ------
-
-
-    ------
-
-    ------'
+  m_Text: "Aapo Nikkola\nEetu Tubi\nErnesto Aranda del Valle\nMarie Smolinski\nMiguel
+    \xC1ngel Ben\xEDtez Alguacil\n\nMiguel \xC1ngel Ben\xEDtez Alguacil\n\nAapo Nikkola
+    \n\nErnesto Aranda del Valle\n\nErnesto Aranda del Valle\nMarie Smolinski\nMiguel
+    \xC1ngel Ben\xEDtez Alguacil\n\nEetu Tubi"
 --- !u!222 &2017702105
 CanvasRenderer:
   m_ObjectHideFlags: 0

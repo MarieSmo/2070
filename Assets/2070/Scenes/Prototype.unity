@@ -919,7 +919,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 314864149}
   waves:
-  - count: 4
+  - count: 1
     rate: 1
     enemies:
     - enemy: {fileID: 1717371405005464702, guid: 68a3fe91be405d24d9bd3df5903aa6fb,
@@ -1101,7 +1101,7 @@ MonoBehaviour:
   - {fileID: 1430010352}
   - {fileID: 314864149}
   waves:
-  - count: 1
+  - count: 4
     rate: 5
     enemies:
     - enemy: {fileID: 1717371405005464702, guid: 68a3fe91be405d24d9bd3df5903aa6fb,
@@ -1110,10 +1110,16 @@ MonoBehaviour:
     - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,
         type: 3}
       weight: 60
-  - count: 1
+  - count: 2
     rate: 5
     enemies:
     - enemy: {fileID: 4207077627617173372, guid: d96be5459ef28064fa119b969b22f773,
+        type: 3}
+      weight: 100
+  - count: 1
+    rate: 5
+    enemies:
+    - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,
         type: 3}
       weight: 100
 --- !u!114 &335679881
@@ -9966,6 +9972,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WavesCleared
       objectReference: {fileID: 0}
+    - target: {fileID: 1268390733309557409, guid: 805ebcd83ea2f8e41aaccb0ef1e4e271,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1268390733309557438, guid: 805ebcd83ea2f8e41aaccb0ef1e4e271,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10261,6 +10272,31 @@ PrefabInstance:
       propertyPath: winningMenu
       value: 
       objectReference: {fileID: 1285192813}
+    - target: {fileID: 1213467634301760281, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: punchRange
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213467634301760281, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: kickRange
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213467634301760281, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: punchDamage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213467634301760281, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: kickDamage
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1213467634301760281, guid: 8bc7396137669b64593d1fdb69bc796e,
+        type: 3}
+      propertyPath: kickRate
+      value: 0.55
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bc7396137669b64593d1fdb69bc796e, type: 3}
 --- !u!1001 &3631319817923777971

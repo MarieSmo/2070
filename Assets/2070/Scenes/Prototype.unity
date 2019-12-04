@@ -9206,7 +9206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ea4a2980856b344b7f005ab141f425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicAudioClip: {fileID: 8300000, guid: dce7178fe9ea2e247a96659bf3db256c, type: 3}
+  musicAudioClip: {fileID: 8300000, guid: 6b525e6c2855ad94ca866c9b5d261e33, type: 3}
   musicOutput: {fileID: 0}
   musicPlayOnAwake: 1
   musicVolume: 1

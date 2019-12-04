@@ -158,7 +158,7 @@ MonoBehaviour:
   max_health: 12
   health: 12
   damage: 7.7
-  velocity: 4.2
+  velocity: 4.4
   meat_spawn_prob: 0.85
   meat_value: 10
   flight_prob_100: 0

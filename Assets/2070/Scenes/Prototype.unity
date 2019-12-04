@@ -3630,7 +3630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1285192814
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4418,13 +4418,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveZone: 0
-  timeBetweenWaves: 0
+  timeBetweenWaves: 1
   nextWave: 0
   state: 2
   spawnPoints:
   - {fileID: 1430010352}
   waves:
-  - count: 2
+  - count: 4
     rate: 2
     enemies:
     - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,

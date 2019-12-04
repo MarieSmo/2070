@@ -217,7 +217,7 @@ MonoBehaviour:
     m_Bits: 8192
   max_health: 3
   health: 3
-  damage: 2.25
+  damage: 1
   velocity: 5
   meat_spawn_prob: 0.55
   meat_value: 4

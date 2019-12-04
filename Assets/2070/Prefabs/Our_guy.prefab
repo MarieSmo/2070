@@ -239,12 +239,13 @@ MonoBehaviour:
   punchRate: 0.3
   punchPos: {fileID: 6269769452233081588}
   punchRange: 1
-  punchDamage: 5
+  punchDamage: 7
   kickRate: 0.6
   kickPos: {fileID: 1479034366837002477}
   kickRange: 1
-  kickDamage: 7
+  kickDamage: 9
   envDamage: 0
+  winningMenu: {fileID: 0}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls:

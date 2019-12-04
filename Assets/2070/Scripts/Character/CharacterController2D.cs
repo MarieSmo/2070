@@ -266,7 +266,8 @@ public class CharacterController2D : MonoBehaviour
         if (GameObject.Find("Our_guy").transform.position.x > GameObject.Find("LevelEnd").transform.position.x) {
             this.GetComponent<OurGuyMovement>().enabled = false;
             this.Move(0, false);
-            health = healthIni;
+            health = 9999;
+            GameObject.Find("HealthCounter").SetActive(false);
             //Scene activeScene = SceneManager.GetActiveScene();
             //SceneManager.LoadScene(activeScene.name);
             winningMenu.SetActive(true);

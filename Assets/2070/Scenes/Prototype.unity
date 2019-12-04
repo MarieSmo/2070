@@ -913,24 +913,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveZone: 0
-  timeBetweenWaves: 3
+  timeBetweenWaves: 6
   nextWave: 0
   state: 2
   spawnPoints:
   - {fileID: 314864149}
   waves:
-  - count: 1
-    rate: 1
+  - count: 4
+    rate: 2
     enemies:
     - enemy: {fileID: 1717371405005464702, guid: 68a3fe91be405d24d9bd3df5903aa6fb,
         type: 3}
-      weight: 100
-  - count: 2
-    rate: 1
-    enemies:
+      weight: 50
     - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,
         type: 3}
-      weight: 100
+      weight: 50
+  - count: 4
+    rate: 2
+    enemies:
+    - enemy: {fileID: 1717371405005464702, guid: 68a3fe91be405d24d9bd3df5903aa6fb,
+        type: 3}
+      weight: 60
+    - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,
+        type: 3}
+      weight: 40
+  - count: 3
+    rate: 2
+    enemies:
+    - enemy: {fileID: 1717371405005464702, guid: 68a3fe91be405d24d9bd3df5903aa6fb,
+        type: 3}
+      weight: 80
+    - enemy: {fileID: 4207077627617173372, guid: d96be5459ef28064fa119b969b22f773,
+        type: 3}
+      weight: 20
+  - count: 3
+    rate: 1
+    enemies:
+    - enemy: {fileID: 4207077627617173372, guid: d96be5459ef28064fa119b969b22f773,
+        type: 3}
+      weight: 20
+    - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,
+        type: 3}
+      weight: 80
 --- !u!4 &314864149
 Transform:
   m_ObjectHideFlags: 0
@@ -4399,8 +4423,8 @@ MonoBehaviour:
     - enemy: {fileID: 4207077627617173372, guid: d96be5459ef28064fa119b969b22f773,
         type: 3}
       weight: 20
-  - count: 1
-    rate: 4
+  - count: 4
+    rate: 2
     enemies:
     - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,
         type: 3}
@@ -9483,21 +9507,27 @@ MonoBehaviour:
   - {fileID: 1430010352}
   - {fileID: 314864149}
   waves:
-  - count: 1
-    rate: 3
+  - count: 4
+    rate: 2
     enemies:
     - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,
         type: 3}
-      weight: 60
+      weight: 70
     - enemy: {fileID: 1717371405005464702, guid: 68a3fe91be405d24d9bd3df5903aa6fb,
         type: 3}
       weight: 30
-  - count: 1
-    rate: 3
+  - count: 5
+    rate: 1
     enemies:
     - enemy: {fileID: 4207077627617173372, guid: d96be5459ef28064fa119b969b22f773,
         type: 3}
-      weight: 100
+      weight: 20
+    - enemy: {fileID: 1717371405005464702, guid: 68a3fe91be405d24d9bd3df5903aa6fb,
+        type: 3}
+      weight: 50
+    - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,
+        type: 3}
+      weight: 50
 --- !u!114 &1955320765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9957,7 +9987,7 @@ PrefabInstance:
     - target: {fileID: 1268390733309557438, guid: 805ebcd83ea2f8e41aaccb0ef1e4e271,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -109
+      value: -108.99994
       objectReference: {fileID: 0}
     - target: {fileID: 1268390733309557438, guid: 805ebcd83ea2f8e41aaccb0ef1e4e271,
         type: 3}
@@ -10494,12 +10524,12 @@ PrefabInstance:
     - target: {fileID: 5183973714421729408, guid: 7555b1fd4c4ecac4dbfc7177a3ed6323,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 290
+      value: 295
       objectReference: {fileID: 0}
     - target: {fileID: 5183973714421729408, guid: 7555b1fd4c4ecac4dbfc7177a3ed6323,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -126
+      value: -122
       objectReference: {fileID: 0}
     - target: {fileID: 5183973714421729408, guid: 7555b1fd4c4ecac4dbfc7177a3ed6323,
         type: 3}
@@ -10613,12 +10643,12 @@ PrefabInstance:
     - target: {fileID: 5265399087176615115, guid: d570122d2b7717b4d90d319858b252d8,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 611.4
+      value: -274
       objectReference: {fileID: 0}
     - target: {fileID: 5265399087176615115, guid: d570122d2b7717b4d90d319858b252d8,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 316.5
+      value: -122
       objectReference: {fileID: 0}
     - target: {fileID: 5265399087176615115, guid: d570122d2b7717b4d90d319858b252d8,
         type: 3}
@@ -10633,22 +10663,22 @@ PrefabInstance:
     - target: {fileID: 5265399087176615115, guid: d570122d2b7717b4d90d319858b252d8,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5265399087176615115, guid: d570122d2b7717b4d90d319858b252d8,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5265399087176615115, guid: d570122d2b7717b4d90d319858b252d8,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5265399087176615115, guid: d570122d2b7717b4d90d319858b252d8,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5265399087176615115, guid: d570122d2b7717b4d90d319858b252d8,
         type: 3}

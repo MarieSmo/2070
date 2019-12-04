@@ -967,10 +967,19 @@ MonoBehaviour:
   - count: 4
     rate: 1
     enemies:
-    - enemy: {fileID: 4207077627617173372, guid: d96be5459ef28064fa119b969b22f773,
+    - enemy: {fileID: 1717371405005464702, guid: 68a3fe91be405d24d9bd3df5903aa6fb,
         type: 3}
       weight: 20
     - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,
+        type: 3}
+      weight: 80
+  - count: 4
+    rate: 1
+    enemies:
+    - enemy: {fileID: 4207077627617173372, guid: d96be5459ef28064fa119b969b22f773,
+        type: 3}
+      weight: 20
+    - enemy: {fileID: 1717371405005464702, guid: 68a3fe91be405d24d9bd3df5903aa6fb,
         type: 3}
       weight: 80
 --- !u!4 &314864149
@@ -4414,7 +4423,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 1430010352}
   waves:
-  - count: 6
+  - count: 2
     rate: 2
     enemies:
     - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,

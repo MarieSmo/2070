@@ -192,9 +192,9 @@ MonoBehaviour:
   meat_spawn_prob: 0.6
   meat_value: 6
   flight_prob_100: 0
-  flight_prob_50: 0.08
-  flight_prob_20: 0.17
-  flight_prob_10: 0.3
+  flight_prob_50: 0.07
+  flight_prob_20: 0.12
+  flight_prob_10: 0.15
   player: {fileID: 0}
 --- !u!95 &4055599934652750464
 Animator:

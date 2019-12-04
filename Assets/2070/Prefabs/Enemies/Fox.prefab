@@ -223,8 +223,8 @@ MonoBehaviour:
   meat_value: 4
   flight_prob_100: 0.03
   flight_prob_50: 0.1
-  flight_prob_20: 0.2
-  flight_prob_10: 0.4
+  flight_prob_20: 0.15
+  flight_prob_10: 0.2
   player: {fileID: 0}
 --- !u!95 &8154939202069251287
 Animator:

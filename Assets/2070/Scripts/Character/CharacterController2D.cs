@@ -269,6 +269,10 @@ public class CharacterController2D : MonoBehaviour
             GameObject.Find("HealthNumber").GetComponent<Text>().enabled = false;
             //Scene activeScene = SceneManager.GetActiveScene();
             //SceneManager.LoadScene(activeScene.name);
+            GameObject.Find("WaveNumber").GetComponent<Text>().enabled = false;
+            GameObject.Find("WaveText").GetComponent<Text>().enabled = false;
+            GameObject.Find("WavesArrow").GetComponent<Text>().enabled = false;
+            GameObject.Find("WavesCleared").GetComponent<Text>().enabled = false;
             winningMenu.SetActive(true);
         }
     }

@@ -3630,7 +3630,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1285192814
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9368,7 +9368,7 @@ MonoBehaviour:
   musicAudioClip: {fileID: 8300000, guid: 6b525e6c2855ad94ca866c9b5d261e33, type: 3}
   musicOutput: {fileID: 0}
   musicPlayOnAwake: 1
-  musicVolume: 1
+  musicVolume: 0.35
   ambientAudioClip: {fileID: 0}
   ambientOutput: {fileID: 0}
   ambientPlayOnAwake: 1

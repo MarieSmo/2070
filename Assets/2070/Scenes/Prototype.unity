@@ -4426,7 +4426,7 @@ MonoBehaviour:
   - count: 5
     rate: 4
     enemies:
-    - enemy: {fileID: 1717371405005464702, guid: 68a3fe91be405d24d9bd3df5903aa6fb,
+    - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,
         type: 3}
       weight: 60
     - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,
@@ -4435,10 +4435,10 @@ MonoBehaviour:
   - count: 5
     rate: 2
     enemies:
-    - enemy: {fileID: 1717371405005464702, guid: 68a3fe91be405d24d9bd3df5903aa6fb,
+    - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,
         type: 3}
       weight: 80
-    - enemy: {fileID: 4207077627617173372, guid: d96be5459ef28064fa119b969b22f773,
+    - enemy: {fileID: 5105071660711106882, guid: 1ec62bd402d70d045ae323516a6ea494,
         type: 3}
       weight: 20
   - count: 5

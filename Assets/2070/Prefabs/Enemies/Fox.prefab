@@ -219,7 +219,7 @@ MonoBehaviour:
   health: 3
   damage: 2.25
   velocity: 5
-  meat_spawn_prob: 0.65
+  meat_spawn_prob: 0.55
   meat_value: 4
   flight_prob_100: 0.03
   flight_prob_50: 0.1

@@ -79,17 +79,11 @@ public class EnemyBehavior2D : MonoBehaviour
 				Fly_away();
                 if (Math.Abs(player.transform.position.x - attackPos.position.x) <= attackRange)
 				{
-                    print("ATTACKING");
-                    print((player.transform.position.x - attackPos.position.x));
-                    print(attackRange);
                     animator.SetBool("attack", true);
 					Attack();
 				}
 				else
                 {
-                    print("NOT ATTACKING");
-                    print((player.transform.position.x - attackPos.position.x));
-                    print(attackRange);
                     move = player.transform.position.x > attackPos.position.x ? 1 : -1;
 					animator.SetBool("attack", false);
 					Move(move);
